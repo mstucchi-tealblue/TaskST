@@ -4,16 +4,23 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5
 
 Window {
+    id: mainWindow
     width: 640
     height: 480
     visible: true
     title: qsTr("Main Window")
+    Component.onCompleted: {
+        setX(Screen.width / 2 - width / 2);
+        setY(Screen.height / 2 - height / 2 );
+    }
 
     ColumnLayout{
+        id: mainWindowColumn
         anchors.fill: parent
         anchors.margins: 5
 
         RowLayout {
+            id: firstRow
             Button {
                 text: "Login"
 
@@ -26,7 +33,9 @@ Window {
                 highlighted: false
                 onClicked: {
                     highlighted = !highlighted
-                    browserProcess.startProcessFromQml()
+                    browserProcess.startProcessFromQml(mainWindow.height,
+                                                       mainWindow.height-firstRow.height-10,
+                                                       mainWindow.width)
                 }
             }
             Button {
