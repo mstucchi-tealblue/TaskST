@@ -1,0 +1,77 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.14"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "browserWindowProcess",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "browserWindowProcess::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-browserWindowProcess-Debug-8cfde1e306c3aeb0a758.json",
+					"name" : "browserWindowProcess",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "browserWindowProcess_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-browserWindowProcess_autogen-Debug-994b8191d5e8b28bc0a6.json",
+					"name" : "browserWindowProcess_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "browserWindowProcess_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-browserWindowProcess_autogen_timestamp_deps-Debug-ecc69c4743b4f488a61c.json",
+					"name" : "browserWindowProcess_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/matteo/build-browserWindowProcess-Desktop-Debug",
+		"source" : "/home/matteo/browserWindowProcess"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}
