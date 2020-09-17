@@ -129,6 +129,6 @@ C:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess/server.h
  mdp:C:/Qt/5.15.1/msvc2015_64/include/QtNetwork/qlocalsocket.h
  mdp:C:/Qt/5.15.1/msvc2015_64/include/QtNetwork/qtnetwork-config.h
  mdp:C:/Qt/5.15.1/msvc2015_64/include/QtNetwork/qtnetworkglobal.h
-C:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess/main.cpp
 C:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess/process.cpp
+C:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess/main.cpp
 C:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess/server.cpp

@@ -3,27 +3,35 @@
 Server::Server(QObject *parent) : QObject(parent)
 {
     server = new QLocalServer(this);
-    connect(server,SIGNAL(newConnection()),this,SLOT(sendSomething()));
+    connect(server,SIGNAL(newConnection()),this,SLOT(connection()));
+    //connect(server,SIGNAL(Server::disconnect()),this,SLOT(sendSomethingDifferent()));
 
     if(!server->listen("mainWindowServer"))
     {
         qDebug() << "Server could not start!";
     } else {
         qDebug() << "Server started";
+        if(!server->isListening())
+            emit disconnect();
     }
+}
+
+void Server::connection(){
+    socket = server->nextPendingConnection();
+    qDebug() << "A client is connected";
+
+//    socket->write("Hello client");
+//    socket->flush();
+
+//    socket->waitForBytesWritten(3000);
+
+//    socket->close();
 
 }
 
-void Server::sendSomething(){
-    QLocalSocket *socket = server->nextPendingConnection();
-    qDebug() << "Socket accettata";
-
-    // qDebug() << server->serverError();
-
-    socket->write("Hello client");
+void Server::sendSomethingDifferent()
+{
+    socket->write("Ittie");
     socket->flush();
-
-    socket->waitForBytesWritten(3000);
-
-    socket->close();
 }
+

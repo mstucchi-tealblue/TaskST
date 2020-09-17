@@ -16,8 +16,6 @@ void Client::connect()
     {
         qDebug() << "Connected";
 
-        socket->write("Hello server \r\n\r\n\r\n\r\n");
-
         socket->waitForBytesWritten(1000);
         socket->waitForReadyRead(3000);
 

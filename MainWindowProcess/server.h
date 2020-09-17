@@ -14,12 +14,15 @@ public:
 
 
 signals:
+    void disconnect();
 
 public slots:
-    void sendSomething();
+    void connection();
+    void sendSomethingDifferent();
 
 private:
     QLocalServer *server;
+    QLocalSocket *socket;
 
 };
 

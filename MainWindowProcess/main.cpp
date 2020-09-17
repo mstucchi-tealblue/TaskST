@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
 
     Process browserProcess(QString("browserProcess"));
     context->setContextProperty("browserProcess",&browserProcess);
+    context->setContextProperty("localServer",&mServer);
 
 
 
