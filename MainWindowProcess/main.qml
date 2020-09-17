@@ -29,6 +29,7 @@ Window {
                     highlighted = !highlighted
                     homeButton.highlighted = false
                     browserButton.highlighted = false
+                    browserProcess.killProcessFromQml();
                 }
 
             }
@@ -39,6 +40,7 @@ Window {
                     highlighted = !highlighted
                     loginButton.highlighted = false
                     browserButton.highlighted = false
+                    browserProcess.killProcessFromQml();
                 }
             }
             Button {
@@ -73,7 +75,7 @@ Window {
             color: "lightblue"
             visible: loginButton.highlighted
             Text{
-                text: "This is login"
+                text: "This is login, pid:"+pid
                 anchors.centerIn: parent
             }
         }
@@ -85,7 +87,7 @@ Window {
             color: "lightgreen"
             visible: homeButton.highlighted
             Text{
-                text: "This is home"
+                text: "This is home, pid:"+pid
                 anchors.centerIn: parent
             }
         }

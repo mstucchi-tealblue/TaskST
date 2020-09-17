@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-
+    engine.rootContext()->setContextProperty("pid",QCoreApplication::applicationPid());
     engine.rootContext()->setContextProperty("receivedText",mClient.getReceivedText());
     engine.rootContext()->setContextProperty("passedMainHeight",passedMainHeight);
     engine.rootContext()->setContextProperty("passedHeight",passedHeight);

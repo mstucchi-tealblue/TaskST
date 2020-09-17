@@ -26,9 +26,16 @@ void Process::startProcessFromQml(int mainWindowsHeight, int height, int width)
         qDebug() << mainWindowsHeight << height << width;
         arguments << QString::number(mainWindowsHeight)<< QString::number(height) << QString::number(width);
 
-        qint64 pid;
-        process->startDetached(program, arguments, workingDir, &pid);
+        qint64 processId;
+        bool re = false;
+
+        re,pid = process->startDetached(program, arguments, workingDir, &processId);
     }
 
 
+}
+
+void Process::killProcessFromQml()
+{
+    //kill the process
 }

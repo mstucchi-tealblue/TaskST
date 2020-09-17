@@ -15,10 +15,9 @@ Window {
     Rectangle
     {
         anchors.fill: parent
-        color: "gray"
-
+        color: "lightgray"
         Text {
-            text: receivedText
+            text: receivedText + pid
             anchors.centerIn: parent
         }
     }

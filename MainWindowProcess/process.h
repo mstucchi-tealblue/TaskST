@@ -13,10 +13,12 @@ public:
 
 public slots:
     void startProcessFromQml(int mainWindowHeight,int height, int width);
+    void killProcessFromQml();
 
 private:
     QProcess *process;
     QString name;
+    int pid;
 };
 
 #endif // PROCESS_H
