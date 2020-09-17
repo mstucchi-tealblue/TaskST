@@ -1,5 +1,0 @@
-/home/matteo/build-browserWindowProcess-Desktop-Debug/CMakeFiles/rebuild_cache.dir
-/home/matteo/build-browserWindowProcess-Desktop-Debug/CMakeFiles/edit_cache.dir
-/home/matteo/build-browserWindowProcess-Desktop-Debug/CMakeFiles/browserWindowProcess.dir
-/home/matteo/build-browserWindowProcess-Desktop-Debug/CMakeFiles/browserWindowProcess_autogen_timestamp_deps.dir
-/home/matteo/build-browserWindowProcess-Desktop-Debug/CMakeFiles/browserWindowProcess_autogen.dir

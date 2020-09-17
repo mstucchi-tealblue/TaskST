@@ -1,0 +1,8 @@
+# ninja log v5
+3	340	622045945	browserWindowProcess_autogen/timestamp	f4d0e22c41809e00
+341	448	622045945	browserWindowProcess_autogen/EWIEGA46WW/qrc_qml.cpp	536280adbce3775e
+499	928	622045946	CMakeFiles/browserWindowProcess.dir/browserWindowProcess_autogen/EWIEGA46WW/qrc_qml.cpp.obj	14841153411c587f
+448	2553	622045947	CMakeFiles/browserWindowProcess.dir/browserWindowProcess_autogen/mocs_compilation.cpp.obj	d90218fda488fc83
+513	2557	622045947	CMakeFiles/browserWindowProcess.dir/client.cpp.obj	7ea75664ace8b906
+469	2855	622045948	CMakeFiles/browserWindowProcess.dir/main.cpp.obj	bc76858696ccc37
+2856	3555	622045948	browserWindowProcess.exe	d48ba2bebb06ec9e

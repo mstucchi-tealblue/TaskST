@@ -16,6 +16,11 @@ Window {
     {
         anchors.fill: parent
         color: "gray"
+
+        Text {
+            text: receivedText
+            anchors.centerIn: parent
+        }
     }
 
 

@@ -1,0 +1,20 @@
+# ninja log v5
+2	356	622039138	MainWindowProcess_autogen/timestamp	cd5ab397522d4ec
+356	460	622039138	MainWindowProcess_autogen/EWIEGA46WW/qrc_qml.cpp	a93130c07442948a
+491	622	622039139	CMakeFiles/MainWindowProcess.dir/MainWindowProcess_autogen/EWIEGA46WW/qrc_qml.cpp.obj	acffb76c1ac704ea
+508	2408	622039140	CMakeFiles/MainWindowProcess.dir/process.cpp.obj	5618bd4fbc912d06
+524	2444	622039140	CMakeFiles/MainWindowProcess.dir/server.cpp.obj	743a86cf7b763d17
+475	2450	622039140	CMakeFiles/MainWindowProcess.dir/MainWindowProcess_autogen/mocs_compilation.cpp.obj	1d25a7d7e0e07d2b
+460	2611	622039141	CMakeFiles/MainWindowProcess.dir/main.cpp.obj	3907ef116e9dcedb
+2612	3845	622039142	MainWindowProcess.exe	4573bedec66c637d
+20	379	622041911	MainWindowProcess_autogen/timestamp	cd5ab397522d4ec
+379	3222	622041914	CMakeFiles/MainWindowProcess.dir/MainWindowProcess_autogen/mocs_compilation.cpp.obj	1d25a7d7e0e07d2b
+418	3224	622041914	CMakeFiles/MainWindowProcess.dir/server.cpp.obj	743a86cf7b763d17
+401	3228	622041914	CMakeFiles/MainWindowProcess.dir/main.cpp.obj	3907ef116e9dcedb
+3228	7409	622041918	MainWindowProcess.exe	4573bedec66c637d
+3	1878	622042021	CMakeFiles/MainWindowProcess.dir/server.cpp.obj	743a86cf7b763d17
+1879	2388	622042021	MainWindowProcess.exe	4573bedec66c637d
+4	1887	622042202	CMakeFiles/MainWindowProcess.dir/server.cpp.obj	743a86cf7b763d17
+1887	2422	622042203	MainWindowProcess.exe	4573bedec66c637d
+3	2349	622042387	CMakeFiles/MainWindowProcess.dir/server.cpp.obj	743a86cf7b763d17
+2351	3005	622042387	MainWindowProcess.exe	4573bedec66c637d

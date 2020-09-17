@@ -24,7 +24,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Core Quick REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick Network REQUIRED)
 
 if(ANDROID)
     add_library(MainWindowProcess SHARED
@@ -32,6 +32,8 @@ if(ANDROID)
       qml.qrc
       process.h
       process.cpp
+      server.h
+      server.cpp
     )
 else()
     add_executable(MainWindowProcess
@@ -39,10 +41,12 @@ else()
       qml.qrc
       process.h
       process.cpp
+      server.h
+      server.cpp
     )
 endif()
 
 target_compile_definitions(MainWindowProcess
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(MainWindowProcess
-  PRIVATE Qt5::Core Qt5::Quick)
+  PRIVATE Qt5::Core Qt5::Quick Qt5::Network)

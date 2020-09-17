@@ -2,10 +2,14 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QWindow>
+#include "client.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
+    Client mClient;
+    mClient.connect();
 
     QString passedMainHeight = argv[1];
     QString passedHeight = argv[2];
@@ -16,6 +20,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
 
+    engine.rootContext()->setContextProperty("receivedText",mClient.getReceivedText());
     engine.rootContext()->setContextProperty("passedMainHeight",passedMainHeight);
     engine.rootContext()->setContextProperty("passedHeight",passedHeight);
     engine.rootContext()->setContextProperty("passedWidth",passedWidth);
@@ -27,6 +32,8 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
+
+
 
     return app.exec();
 }
