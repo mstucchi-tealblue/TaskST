@@ -22,17 +22,33 @@ Window {
         RowLayout {
             id: firstRow
             Button {
+                id: loginButton
                 text: "Login"
+                highlighted: true
+                onClicked: {
+                    highlighted = !highlighted
+                    homeButton.highlighted = false
+                    browserButton.highlighted = false
+                }
 
             }
             Button {
+                id: homeButton
                 text: "Home"
+                onClicked: {
+                    highlighted = !highlighted
+                    loginButton.highlighted = false
+                    browserButton.highlighted = false
+                }
             }
             Button {
+                id: browserButton
                 text: "Browser"
                 highlighted: false
                 onClicked: {
                     highlighted = !highlighted
+                    loginButton.highlighted = false
+                    homeButton.highlighted = false
                     browserProcess.startProcessFromQml(mainWindow.height,
                                                        mainWindow.height-firstRow.height-10,
                                                        mainWindow.width)
@@ -44,9 +60,36 @@ Window {
         }
 
         Frame {
+            id: frame
             Layout.fillHeight: true
             Layout.fillWidth: true
+            visible: !loginProcess.visible && !homeProcess.visible
+        }
+
+        Rectangle {
+            id: loginProcess
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            color: "lightblue"
+            visible: loginButton.highlighted
+            Text{
+                text: "This is login"
+                anchors.centerIn: parent
+            }
+        }
+
+        Rectangle {
+            id: homeProcess
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            color: "lightgreen"
+            visible: homeButton.highlighted
+            Text{
+                text: "This is home"
+                anchors.centerIn: parent
+            }
         }
     }
+
 
 }
