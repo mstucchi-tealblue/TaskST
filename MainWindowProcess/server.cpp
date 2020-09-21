@@ -4,11 +4,13 @@ Server::Server(QObject *parent) : QObject(parent)
 {
     server = new QLocalServer(this);
     connect(server,SIGNAL(newConnection()),this,SLOT(connection()));
+
     //connect(server,SIGNAL(Server::disconnect()),this,SLOT(sendSomethingDifferent()));
 
     if(!server->listen("mainWindowServer"))
     {
         qDebug() << "Server could not start!";
+        qDebug() << server->errorString();
     } else {
         qDebug() << "Server started";
         if(!server->isListening())
@@ -29,9 +31,12 @@ void Server::connection(){
 
 }
 
-void Server::sendSomethingDifferent()
+void Server::sendSomethingDifferent(){}
+
+void Server::heightHandler()
 {
-    socket->write("Ittie");
+    socket->write("sasasa");
     socket->flush();
 }
+
 

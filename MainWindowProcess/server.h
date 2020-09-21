@@ -19,6 +19,7 @@ signals:
 public slots:
     void connection();
     void sendSomethingDifferent();
+    void heightHandler();
 
 private:
     QLocalServer *server;
