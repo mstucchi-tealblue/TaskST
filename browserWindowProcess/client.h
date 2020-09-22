@@ -11,7 +11,7 @@ class Client : public QObject
 public:
     explicit Client(QObject *parent = nullptr);
 
-    void connect();
+    void readText();
     void setReceivedText(QString);
     QString getReceivedText();
 

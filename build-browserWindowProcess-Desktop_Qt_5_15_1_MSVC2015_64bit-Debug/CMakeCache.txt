@@ -201,9 +201,6 @@ Qt5Qml_DIR:PATH=C:/Qt/5.15.1/msvc2015_64/lib/cmake/Qt5Qml
 //The directory containing a CMake configuration file for Qt5Quick.
 Qt5Quick_DIR:PATH=C:/Qt/5.15.1/msvc2015_64/lib/cmake/Qt5Quick
 
-//The directory containing a CMake configuration file for Qt5Widgets.
-Qt5Widgets_DIR:PATH=C:/Qt/5.15.1/msvc2015_64/lib/cmake/Qt5Widgets
-
 //The directory containing a CMake configuration file for Qt5.
 Qt5_DIR:PATH=C:/Qt/5.15.1/msvc2015_64/lib/cmake/Qt5
 

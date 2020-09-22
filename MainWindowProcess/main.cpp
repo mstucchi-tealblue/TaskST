@@ -5,34 +5,22 @@
 #include <QQmlComponent>
 #include <QQuickWindow>
 #include <QObject>
+#include <QSignalMapper>
+#include <Windows.h>
 #include "process.h"
 #include "server.h"
 
-//class SignalSlotHandler : public QObject {
-//    Q_OBJECT
 
-//public:
-//    SignalSlotHandler(Server* ser, QWindow* win){
-//        server = ser;
-//        window = win;
-
-//        connect(window,SIGNAL(close()),server,SLOT(print()));
-//    }
-
-//private:
-//    QWindow *window;
-//    Server *server;
-//};
 
 int main(int argc, char *argv[])
 {
-
-
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
 
     Server *mServer = new Server(&app);
+
+
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
@@ -42,6 +30,7 @@ int main(int argc, char *argv[])
     context->setContextProperty("browserProcess",&browserProcess);
     context->setContextProperty("localServer",mServer);
     context->setContextProperty("pid",QCoreApplication::applicationPid());
+
 
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
@@ -59,12 +48,20 @@ int main(int argc, char *argv[])
     QRect defaultGeom = window->geometry();
     qDebug()<<defaultGeom;
 
-    QObject::connect(window, &QQuickWindow::heightChanged, mServer, &Server::heightHandler);
+    QObject::connect(window, &QQuickWindow::heightChanged, [&](){
+        mServer->heightHandler(window->height());
+    });
+
+    QObject::connect(window, &QQuickWindow::colorChanged, [&](){
+        mServer->simpleMessage(window->height());
+    });
+
+    //QObject::connect(window, &QQuickWindow::close, &browserProcess, &Process::killProcess);
 
 
 
 //    while(defaultGeom != window->geometry())
-//        qDebug()<<window->x() <<window->y();
+//    qDebug()<<window->x() <<window->y();
 
 
 

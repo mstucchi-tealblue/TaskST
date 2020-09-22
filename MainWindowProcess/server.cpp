@@ -3,9 +3,9 @@
 Server::Server(QObject *parent) : QObject(parent)
 {
     server = new QLocalServer(this);
-    connect(server,SIGNAL(newConnection()),this,SLOT(connection()));
 
-    //connect(server,SIGNAL(Server::disconnect()),this,SLOT(sendSomethingDifferent()));
+    //Every time a socket connects to the server, it executes connection() slot.
+    connect(server,SIGNAL(newConnection()),this,SLOT(connection()));
 
     if(!server->listen("mainWindowServer"))
     {
@@ -19,24 +19,46 @@ Server::Server(QObject *parent) : QObject(parent)
 }
 
 void Server::connection(){
+    //That establish a socket that we use to communicate with client.
     socket = server->nextPendingConnection();
     qDebug() << "A client is connected";
 
-//    socket->write("Hello client");
-//    socket->flush();
-
-//    socket->waitForBytesWritten(3000);
-
-//    socket->close();
+        socket->write("Hello client");
+        socket->flush();
+        socket->waitForBytesWritten(3000);
 
 }
 
-void Server::sendSomethingDifferent(){}
-
-void Server::heightHandler()
+//Triggered when signals are emitted
+void Server::heightHandler(int height)
 {
-    socket->write("sasasa");
+    bool permissionToWrite = checkHeight(height);
+    if(permissionToWrite)
+    {
+        socket->write("sasasa");
+        socket->flush();
+    }
+}
+
+void Server::simpleMessage(int height)
+{
+    socket->write("xaxaxaxa");
     socket->flush();
+    //socket->waitForBytesWritten(3000);
+}
+
+bool Server::checkHeight(int newHeight)
+{
+    qDebug() << newHeight;
+    if(oldHeight == 0)
+    {
+        oldHeight = newHeight;
+        return false;
+    }
+
+    if(newHeight-oldHeight > 100)
+        return true;
+    return false;
 }
 
 

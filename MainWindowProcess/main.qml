@@ -29,7 +29,7 @@ Window {
                     highlighted = !highlighted
                     homeButton.highlighted = false
                     browserButton.highlighted = false
-                    browserProcess.killProcessFromQml();
+                    //browserProcess.killProcessFromQml();
                 }
 
             }
@@ -40,7 +40,7 @@ Window {
                     highlighted = !highlighted
                     loginButton.highlighted = false
                     browserButton.highlighted = false
-                    browserProcess.killProcessFromQml();
+                    //browserProcess.killProcessFromQml();
                 }
             }
             Button {
@@ -74,6 +74,11 @@ Window {
             Layout.fillWidth: true
             color: "lightblue"
             visible: loginButton.highlighted
+            Button {
+                text: "changeColor"
+                onClicked: mainWindow.color = "red"
+            }
+
             Text{
                 text: "This is login, pid:"+pid
                 anchors.centerIn: parent

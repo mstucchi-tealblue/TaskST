@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     Client mClient;
-    mClient.connect();
+    mClient.readText();
 
     QString passedMainHeight = argv[1];
     QString passedHeight = argv[2];
@@ -18,6 +18,8 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+
+    qDebug() << mClient.getReceivedText();
 
     engine.rootContext()->setContextProperty("pid",QCoreApplication::applicationPid());
     engine.rootContext()->setContextProperty("receivedText",mClient.getReceivedText());
@@ -32,8 +34,6 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
-
-
 
     return app.exec();
 }
