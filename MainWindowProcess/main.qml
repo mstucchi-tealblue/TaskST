@@ -74,11 +74,6 @@ Window {
             Layout.fillWidth: true
             color: "lightblue"
             visible: loginButton.highlighted
-            Button {
-                text: "changeColor"
-                onClicked: mainWindow.color = "red"
-            }
-
             Text{
                 text: "This is login, pid:"+pid
                 anchors.centerIn: parent

@@ -18,9 +18,7 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
 
-    Server *mServer = new Server(&app);
-
-
+    server *mServer = new server(&app);
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
@@ -44,30 +42,16 @@ int main(int argc, char *argv[])
     auto topLevelObject = engine.rootObjects().value(0);
     auto window = qobject_cast<QQuickWindow *>(topLevelObject);
     window->show();
-    //qDebug() << window->width() << window->height();
-    QRect defaultGeom = window->geometry();
-    qDebug()<<defaultGeom;
+
+    qDebug() << window->width() << window->height();
 
     QObject::connect(window, &QQuickWindow::heightChanged, [&](){
-        mServer->heightHandler(window->height());
+    mServer->heightChangedHandler(window->height()-50);
     });
 
-    QObject::connect(window, &QQuickWindow::colorChanged, [&](){
-        mServer->simpleMessage(window->height());
+    QObject::connect(window, &QQuickWindow::widthChanged, [&](){
+    mServer->widthChangedHandler(window->width());
     });
-
-    //QObject::connect(window, &QQuickWindow::close, &browserProcess, &Process::killProcess);
-
-
-
-//    while(defaultGeom != window->geometry())
-//    qDebug()<<window->x() <<window->y();
-
-
-
-
-
-
 
     return app.exec();
 }

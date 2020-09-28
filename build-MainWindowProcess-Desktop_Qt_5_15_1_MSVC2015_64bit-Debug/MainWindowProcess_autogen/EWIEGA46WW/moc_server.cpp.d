@@ -1,5 +1,5 @@
 C:/Users/Matteo/Documents/QtProjects/TaskST/build-MainWindowProcess-Desktop_Qt_5_15_1_MSVC2015_64bit-Debug/MainWindowProcess_autogen/EWIEGA46WW/moc_server.cpp: C:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess/server.h \
-  C:/Qt/5.15.1/msvc2015_64/include/QtCore/QDebug \
+  C:/Qt/5.15.1/msvc2015_64/include/QtCore/QDataStream \
   C:/Qt/5.15.1/msvc2015_64/include/QtCore/QObject \
   C:/Qt/5.15.1/msvc2015_64/include/QtCore/qalgorithms.h \
   C:/Qt/5.15.1/msvc2015_64/include/QtCore/qarraydata.h \
@@ -13,6 +13,7 @@ C:/Users/Matteo/Documents/QtProjects/TaskST/build-MainWindowProcess-Desktop_Qt_5
   C:/Qt/5.15.1/msvc2015_64/include/QtCore/qcontainerfwd.h \
   C:/Qt/5.15.1/msvc2015_64/include/QtCore/qcontainertools_impl.h \
   C:/Qt/5.15.1/msvc2015_64/include/QtCore/qcontiguouscache.h \
+  C:/Qt/5.15.1/msvc2015_64/include/QtCore/qdatastream.h \
   C:/Qt/5.15.1/msvc2015_64/include/QtCore/qdebug.h \
   C:/Qt/5.15.1/msvc2015_64/include/QtCore/qflags.h \
   C:/Qt/5.15.1/msvc2015_64/include/QtCore/qglobal.h \

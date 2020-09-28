@@ -2,35 +2,41 @@
 #define SERVER_H
 
 #include <QObject>
-#include <QDebug>
 #include <QLocalServer>
 #include <QLocalSocket>
-#include <Windows.h>
+#include <QDataStream>
+#include <string>
 
-
-class Server : public QObject
+class server : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(int windowHeight READ getWindowHeight WRITE setWindowHeight NOTIFY windowHeightChanged)
+    Q_PROPERTY(int windowWidth READ getWindowWidth WRITE setWindowWidth NOTIFY windowWidthChanged)
+
 public:
-    explicit Server(QObject *parent = nullptr);
-    void heightHandler(int height);
-    void simpleMessage(int height);
+    explicit server(QObject *parent = nullptr);
 
+    void heightChangedHandler(int height);
+    void widthChangedHandler(int width);
 
+    // Setters and getters
+    qint64 getWindowHeight() const;
+    void setWindowHeight(qint64 value);
+    qint64 getWindowWidth() const;
+    void setWindowWidth(qint64 value);
 
 signals:
-    void disconnect();
+    void windowHeightChanged();
+    void windowWidthChanged();
 
 public slots:
-    void connection();
-
+    void sendWelcome();
 
 private:
-    QLocalServer *server;
-    QLocalSocket *socket;
-
-    int oldHeight = 0;
-    bool checkHeight(int newHeight);
+    QLocalServer *mServer;
+    QLocalSocket *clientConnection;
+    qint64 windowHeight = 0;
+    qint64 windowWidth = 0;
 
 };
 

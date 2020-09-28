@@ -8,24 +8,15 @@ int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    Client mClient;
-    mClient.readText();
-
-    QString passedMainHeight = argv[1];
-    QString passedHeight = argv[2];
-    QString passedWidth = argv[3];
-
     QGuiApplication app(argc, argv);
+
+    //Pass the window initial dimensions
+    client mClient(argv[2],argv[3],argv[1], &app);
 
     QQmlApplicationEngine engine;
 
-    qDebug() << mClient.getReceivedText();
-
     engine.rootContext()->setContextProperty("pid",QCoreApplication::applicationPid());
-    engine.rootContext()->setContextProperty("receivedText",mClient.getReceivedText());
-    engine.rootContext()->setContextProperty("passedMainHeight",passedMainHeight);
-    engine.rootContext()->setContextProperty("passedHeight",passedHeight);
-    engine.rootContext()->setContextProperty("passedWidth",passedWidth);
+    engine.rootContext()->setContextProperty("mClient",&mClient);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

@@ -1,10 +1,12 @@
 browserWindowProcess_autogen/timestamp: \
-	C:/Qt/5.15.1/msvc2015_64/include/QtCore/QDebug \
+	C:/Qt/5.15.1/msvc2015_64/include/QtCore/QDataStream \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/QObject \
+	C:/Qt/5.15.1/msvc2015_64/include/QtCore/QTimer \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qalgorithms.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qarraydata.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qatomic.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qbasicatomic.h \
+	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qbasictimer.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qbytearray.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qbytearraylist.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qchar.h \
@@ -13,6 +15,7 @@ browserWindowProcess_autogen/timestamp: \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qcontainerfwd.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qcontainertools_impl.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qcontiguouscache.h \
+	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qdatastream.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qdebug.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qflags.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qglobal.h \
@@ -52,6 +55,7 @@ browserWindowProcess_autogen/timestamp: \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qsystemdetection.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qtcore-config.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qtextstream.h \
+	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qtimer.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qtypeinfo.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qvariant.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qvarlengtharray.h \

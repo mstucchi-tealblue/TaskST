@@ -1,4 +1,5 @@
 MainWindowProcess_autogen/timestamp: \
+	C:/Qt/5.15.1/msvc2015_64/include/QtCore/QDataStream \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/QDebug \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/QObject \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/QProcess \
@@ -14,6 +15,7 @@ MainWindowProcess_autogen/timestamp: \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qcontainerfwd.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qcontainertools_impl.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qcontiguouscache.h \
+	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qdatastream.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qdebug.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qflags.h \
 	C:/Qt/5.15.1/msvc2015_64/include/QtCore/qglobal.h \

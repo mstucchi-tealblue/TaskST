@@ -1,64 +1,83 @@
 #include "server.h"
 
-Server::Server(QObject *parent) : QObject(parent)
+
+server::server(QObject *parent) : QObject(parent)
 {
-    server = new QLocalServer(this);
+    mServer = new QLocalServer(this);
 
-    //Every time a socket connects to the server, it executes connection() slot.
-    connect(server,SIGNAL(newConnection()),this,SLOT(connection()));
-
-    if(!server->listen("mainWindowServer"))
-    {
+    if (!mServer->listen("ServerName")) {
         qDebug() << "Server could not start!";
-        qDebug() << server->errorString();
+        qDebug() << mServer->errorString();
+        return;
+
     } else {
         qDebug() << "Server started";
-        if(!server->isListening())
-            emit disconnect();
-    }
-}
-
-void Server::connection(){
-    //That establish a socket that we use to communicate with client.
-    socket = server->nextPendingConnection();
-    qDebug() << "A client is connected";
-
-        socket->write("Hello client");
-        socket->flush();
-        socket->waitForBytesWritten(3000);
-
-}
-
-//Triggered when signals are emitted
-void Server::heightHandler(int height)
-{
-    bool permissionToWrite = checkHeight(height);
-    if(permissionToWrite)
-    {
-        socket->write("sasasa");
-        socket->flush();
-    }
-}
-
-void Server::simpleMessage(int height)
-{
-    socket->write("xaxaxaxa");
-    socket->flush();
-    //socket->waitForBytesWritten(3000);
-}
-
-bool Server::checkHeight(int newHeight)
-{
-    qDebug() << newHeight;
-    if(oldHeight == 0)
-    {
-        oldHeight = newHeight;
-        return false;
     }
 
-    if(newHeight-oldHeight > 100)
-        return true;
-    return false;
+    connect(mServer, &QLocalServer::newConnection, this, &server::sendWelcome);
+}
+
+// Height and width updaters
+void server::heightChangedHandler(int height)
+{
+    setWindowHeight(height);
+
+    QByteArray qByteHeight;
+    QByteArray qBytePrefix;
+
+    qByteHeight.setNum(height);
+    qBytePrefix = "h";
+    clientConnection->write(qBytePrefix + qByteHeight);
+    clientConnection->flush();
+
+}
+
+void server::widthChangedHandler(int width)
+{
+    setWindowWidth(width);
+
+    QByteArray qByteWidth;
+    QByteArray qBytePrefix;
+
+    qByteWidth.setNum(width);
+    qBytePrefix = "w";
+    clientConnection->write(qBytePrefix + qByteWidth);
+    clientConnection->flush();
+}
+
+//Slots:
+void server::sendWelcome()
+{
+    clientConnection = mServer->nextPendingConnection();
+    //    connect(clientConnection, &QLocalSocket::disconnected, clientConnection, &QLocalSocket::deleteLater);
+    clientConnection->write("Welcome client");
+    clientConnection->flush();
+
+}
+
+// Getters and setters implementation
+qint64 server::getWindowWidth() const
+{
+    return windowWidth;
+}
+
+void server::setWindowWidth(qint64 value)
+{
+    windowWidth = value;
+    emit windowHeightChanged();
+}
+
+qint64 server::getWindowHeight() const
+{
+    return windowHeight;
+}
+
+void server::setWindowHeight(qint64 value)
+{
+    if (value != windowHeight) {
+        windowHeight = value;
+        emit windowHeightChanged();
+    }
 }
 
 

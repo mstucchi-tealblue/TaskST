@@ -64,7 +64,7 @@ C:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess/process.h
 C:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess/server.h
  mmc:Q_OBJECT
  mdp:C:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess/server.h
- mdp:C:/Qt/5.15.1/msvc2015_64/include/QtCore/QDebug
+ mdp:C:/Qt/5.15.1/msvc2015_64/include/QtCore/QDataStream
  mdp:C:/Qt/5.15.1/msvc2015_64/include/QtCore/QObject
  mdp:C:/Qt/5.15.1/msvc2015_64/include/QtCore/qalgorithms.h
  mdp:C:/Qt/5.15.1/msvc2015_64/include/QtCore/qarraydata.h
@@ -78,6 +78,7 @@ C:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess/server.h
  mdp:C:/Qt/5.15.1/msvc2015_64/include/QtCore/qcontainerfwd.h
  mdp:C:/Qt/5.15.1/msvc2015_64/include/QtCore/qcontainertools_impl.h
  mdp:C:/Qt/5.15.1/msvc2015_64/include/QtCore/qcontiguouscache.h
+ mdp:C:/Qt/5.15.1/msvc2015_64/include/QtCore/qdatastream.h
  mdp:C:/Qt/5.15.1/msvc2015_64/include/QtCore/qdebug.h
  mdp:C:/Qt/5.15.1/msvc2015_64/include/QtCore/qflags.h
  mdp:C:/Qt/5.15.1/msvc2015_64/include/QtCore/qglobal.h

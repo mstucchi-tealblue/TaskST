@@ -13,6 +13,7 @@ void Process::startProcessFromQml(int mainWindowsHeight, int height, int width)
     process = new QProcess(parent);
 
     if(this->name == QString("browserProcess")){
+
         //Windows
         QString program = "C:\\Users\\Matteo\\Documents\\QtProjects\\TaskST\\build-browserWindowProcess-Desktop_Qt_5_15_1_MSVC2015_64bit-Debug\\browserWindowProcess.exe";
         QString workingDir = "C:\\Users\\Matteo\\Documents\\QtProjects\\SecondProcess";
@@ -29,5 +30,6 @@ void Process::startProcessFromQml(int mainWindowsHeight, int height, int width)
 
 void Process::killProcess()
 {
+    //Todo: implement
     system("taskkill /F /T /IM browserWindowProcess.exe");
 }

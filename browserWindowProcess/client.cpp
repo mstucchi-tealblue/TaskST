@@ -1,35 +1,111 @@
 #include "client.h"
 
-Client::Client(QObject *parent) : QObject(parent){
-    socket = new QLocalSocket();
-    socket->connectToServer("mainWindowServer");
-    connect(socket, &QLocalSocket::readyRead, this, &Client::readText);
+client::client(QObject *parent) : QObject(parent){ }
+
+client::client(QString  initialHeight, QString  initialWidth, QString  wrapperWindowHeight, QObject *parent) : QObject(parent)
+{
+    socket = new QLocalSocket(this);
+    connect(socket, &QLocalSocket::readyRead, this, &client::readWelcome);
+    socket->connectToServer("ServerName");
+
+    setInitialHeight(initialHeight.toInt());
+    setInitialWidth(initialWidth.toInt());
+    setWrapperWindowHeight(wrapperWindowHeight.toInt());
+    setWindowHeight(initialHeight.toInt());
+    setWindowWidth(initialWidth.toInt());
 }
 
+//Server incoming contents handlers
+void client::readWelcome()
+{
+    setReceivedFromServer(socket->readAll());
+    qDebug() << receivedFromSever;
+}
 
-
-void Client::readText(){
-
-    if(socket->waitForConnected(3000))
+void client::setReceivedFromServer(QString fromServer)
+{
+    //Height handler
+    if(fromServer.at(0) == "h")
     {
-        qDebug() << "Connected";
-        socket->waitForReadyRead(3000);
+        fromServer.remove(0,1);
+        setWindowHeight(fromServer.toInt());
+        return;
+    }
 
-        //qDebug() << "Reading: " << socket->bytesAvailable();
-
-        setReceivedText(socket->readAll());
-    } else
+    //Width handler
+    if(fromServer.at(0) == "w")
     {
-        qDebug() << "Not connected";
+        fromServer.remove(0,1);
+        setWindowWidth(fromServer.toInt());
+        return;
+    }
+
+    //Textual content handler (Patient...)
+    if (fromServer != receivedFromSever) {
+        receivedFromSever = fromServer;
+        emit receivedFromServerChanged();
     }
 }
 
-void Client::setReceivedText(QString textFromServer)
+
+
+//Getters and setters implementation
+
+int client::getInitialWidth() const
 {
-    receivedText = textFromServer;
+    return initialWidth;
 }
 
-QString Client::getReceivedText()
+void client::setInitialWidth(int value)
 {
-    return receivedText;
+    initialWidth = value;
 }
+
+int client::getInitialHeight() const
+{
+    return initialHeight;
+}
+
+void client::setInitialHeight(int value)
+{
+    initialHeight = value;
+}
+
+int client::getWrapperWindowHeight() const
+{
+    return wrapperWindowHeight;
+}
+
+void client::setWrapperWindowHeight(int value)
+{
+    wrapperWindowHeight = value;
+}
+
+qint64 client::getWindowWidth() const
+{
+    return windowWidth;
+}
+
+void client::setWindowWidth(const qint64 &value)
+{
+    windowWidth = value;
+    emit windowWidthChanged();
+}
+
+qint64 client::getWindowHeight() const
+{
+    return windowHeight;
+}
+
+void client::setWindowHeight(const qint64 &value)
+{
+    windowHeight = value;
+    emit windowHeightChanged();
+}
+
+QString client::getReceivedFromServer()
+{
+    return receivedFromSever;
+}
+
+
