@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
     window->show();
 
     //Start the process unvisible
-    browserProcess.startProcess(window->height(),window->height()-50, window->width());
+    browserProcess.startProcess(window->height(),window->height()-50, window->width(), window->x(), window->y()+50);
 
     QObject::connect(window, &QQuickWindow::heightChanged, [&](){
     mServer->heightChangedHandler(window->height()-50);
@@ -53,6 +53,14 @@ int main(int argc, char *argv[])
     QObject::connect(window, &QQuickWindow::widthChanged, [&](){
     mServer->widthChangedHandler(window->width());
     });
+
+//    QObject::connect(window, &QQuickWindow::xChanged, [&](){
+//    mServer->xChangeHandler(window->x());
+//    });
+
+//    QObject::connect(window, &QQuickWindow::yChanged, [&](){
+//    mServer->yChangeHandler(window->y());
+//    });
 
     QObject::connect(context, &QQmlContext::destroyed, [&](){
     browserProcess.closeProcessHandler();

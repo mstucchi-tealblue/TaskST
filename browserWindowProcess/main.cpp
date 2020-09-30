@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     //Pass the window initial dimensions
-    client mClient(argv[2],argv[3],argv[1], &app);
+    client mClient(argv[2],argv[3],argv[1], argv[4], argv[5], &app);
 
     QQmlApplicationEngine engine;
 
@@ -29,8 +29,6 @@ int main(int argc, char *argv[])
     auto topLevelObject = engine.rootObjects().value(0);
     auto window = qobject_cast<QQuickWindow *>(topLevelObject);
     window->setFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
-
-
 
     return app.exec();
 }

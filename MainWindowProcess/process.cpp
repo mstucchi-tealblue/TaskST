@@ -7,7 +7,7 @@ Process::Process(QString processName)
     name = processName;
 }
 
-void Process::startProcess(int mainWindowsHeight, int height, int width)
+void Process::startProcess(int mainWindowsHeight, int height, int width, int x, int y)
 {
     QObject *parent = 0;
     process = new QProcess(parent);
@@ -23,7 +23,7 @@ void Process::startProcess(int mainWindowsHeight, int height, int width)
         //QString workingDir = "/home/matteo/Desktop/InteractionBetweenTwoProcesses/SecondProcess";
 
         QStringList arguments;
-        arguments << QString::number(mainWindowsHeight)<< QString::number(height) << QString::number(width);
+        arguments << QString::number(mainWindowsHeight)<< QString::number(height) << QString::number(width) << QString::number(x) << QString::number(y);
         process->start(program, arguments);
     }
 }

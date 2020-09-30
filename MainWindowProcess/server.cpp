@@ -44,6 +44,28 @@ void server::widthChangedHandler(int width)
     clientConnection->flush();
 }
 
+void server::xChangeHandler(int x)
+{
+    QByteArray qByteX;
+    QByteArray qBytePrefix;
+
+    qByteX.setNum(x);
+    qBytePrefix = "x";
+    clientConnection->write(qBytePrefix + qByteX);
+    clientConnection->flush();
+}
+
+void server::yChangeHandler(int y)
+{
+    QByteArray qByteY;
+    QByteArray qBytePrefix;
+
+    qByteY.setNum(y);
+    qBytePrefix = "y";
+    clientConnection->write(qBytePrefix + qByteY);
+    clientConnection->flush();
+}
+
 void server::processVisibilityHandler(bool visibility)
 {
     if(visibility)
@@ -72,7 +94,6 @@ qint64 server::getWindowWidth() const
 void server::setWindowWidth(qint64 value)
 {
     windowWidth = value;
-    emit windowHeightChanged();
 }
 
 qint64 server::getWindowHeight() const
@@ -84,7 +105,6 @@ void server::setWindowHeight(qint64 value)
 {
     if (value != windowHeight) {
         windowHeight = value;
-        emit windowHeightChanged();
     }
 }
 

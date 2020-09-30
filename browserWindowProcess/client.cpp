@@ -2,7 +2,7 @@
 
 client::client(QObject *parent) : QObject(parent){ }
 
-client::client(QString  initialHeight, QString  initialWidth, QString  wrapperWindowHeight, QObject *parent) : QObject(parent)
+client::client(QString  initialHeight, QString  initialWidth, QString  wrapperWindowHeight, QString windowX, QString windowY, QObject *parent) : QObject(parent)
 {
     socket = new QLocalSocket(this);
     connect(socket, &QLocalSocket::readyRead, this, &client::readWelcome);
@@ -13,6 +13,8 @@ client::client(QString  initialHeight, QString  initialWidth, QString  wrapperWi
     setWrapperWindowHeight(wrapperWindowHeight.toInt());
     setWindowHeight(initialHeight.toInt());
     setWindowWidth(initialWidth.toInt());
+    setWindowX(windowX.toInt());
+    setWindowY(windowY.toInt());
 }
 
 //Server incoming contents handlers
@@ -40,6 +42,22 @@ void client::setReceivedFromServer(QString fromServer)
         return;
     }
 
+    //X Handler
+    if(fromServer.at(0) == "x")
+    {
+        fromServer.remove(0,1);
+        setWindowX(fromServer.toInt());
+        return;
+    }
+
+    if(fromServer.at(0) == "y")
+    {
+        fromServer.remove(0,1);
+        setWindowY(fromServer.toInt());
+        return;
+    }
+
+    //Visibility handler
     if(fromServer.mid(0,4) == "Vis-")
     {
         fromServer.remove(0,4);
@@ -101,6 +119,28 @@ void client::setWindowVisibility(bool value)
 {
     windowVisibility = value;
     emit windowVisibilityChanged();
+}
+
+qint64 client::getWindowX() const
+{
+    return windowX;
+}
+
+void client::setWindowX(const qint64 &value)
+{
+    windowX = value;
+    emit windowXChanged();
+}
+
+qint64 client::getWindowY() const
+{
+    return windowY;
+}
+
+void client::setWindowY(const qint64 &value)
+{
+    windowY = value;
+    emit windowYChanged();
 }
 
 qint64 client::getWindowWidth() const

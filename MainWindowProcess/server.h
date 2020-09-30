@@ -10,14 +10,14 @@
 class server : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int windowHeight READ getWindowHeight WRITE setWindowHeight NOTIFY windowHeightChanged)
-    Q_PROPERTY(int windowWidth READ getWindowWidth WRITE setWindowWidth NOTIFY windowWidthChanged)
 
 public:
     explicit server(QObject *parent = nullptr);
 
     void heightChangedHandler(int height);
     void widthChangedHandler(int width);
+    void xChangeHandler(int x);
+    void yChangeHandler(int y);
 
     // Setters and getters
     qint64 getWindowHeight() const;
@@ -26,13 +26,11 @@ public:
     void setWindowWidth(qint64 value);
 
 signals:
-    void windowHeightChanged();
-    void windowWidthChanged();
+
 
 public slots:
     void sendWelcome();
     void processVisibilityHandler(bool visibility);
-
 
 private:
     QLocalServer *mServer;
