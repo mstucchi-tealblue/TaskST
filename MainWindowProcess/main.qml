@@ -29,9 +29,9 @@ Window {
                     highlighted = !highlighted
                     homeButton.highlighted = false
                     browserButton.highlighted = false
+                    analysisButton.highlighted = false
                     mServer.processVisibilityHandler(false)
                 }
-
             }
             Button {
                 id: homeButton
@@ -40,6 +40,7 @@ Window {
                     highlighted = !highlighted
                     loginButton.highlighted = false
                     browserButton.highlighted = false
+                    analysisButton.highlighted = false
                     mServer.processVisibilityHandler(false)
                 }
             }
@@ -51,13 +52,23 @@ Window {
                     highlighted = !highlighted
                     loginButton.highlighted = false
                     homeButton.highlighted = false
+                    analysisButton.highlighted = false
                     //process visibility changer
-                    mServer.processVisibilityHandler(highlighted)
+                    mServer.processVisibilityHandler(browserButton.highlighted)
                 }
             }
-
             Button {
+                id: analysisButton
                 text: "Analysis"
+                highlighted: false
+                onClicked: {
+                    highlighted = !highlighted
+                    loginButton.highlighted = false
+                    homeButton.highlighted = false
+                    browserButton.highlighted = false
+                    //process visibility changer
+                    mServer.processVisibilityHandler(analysisButton.highlighted)
+                }
             }
         }
 

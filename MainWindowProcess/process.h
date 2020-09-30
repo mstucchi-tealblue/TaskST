@@ -13,7 +13,7 @@ public:
 
 public slots:
     void startProcess(int mainWindowHeight,int height, int width);
-    void killProcess();
+    void closeProcessHandler();
 
 private:
     QProcess *process;

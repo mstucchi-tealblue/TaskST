@@ -1,6 +1,5 @@
 #include "server.h"
 
-
 server::server(QObject *parent) : QObject(parent)
 {
     mServer = new QLocalServer(this);
@@ -47,7 +46,6 @@ void server::widthChangedHandler(int width)
 
 void server::processVisibilityHandler(bool visibility)
 {
-    qDebug() << visibility;
     if(visibility)
         clientConnection->write("Vis-true");
     else
@@ -63,7 +61,6 @@ void server::sendWelcome()
     //    connect(clientConnection, &QLocalSocket::disconnected, clientConnection, &QLocalSocket::deleteLater);
     clientConnection->write("Welcome client");
     clientConnection->flush();
-
 }
 
 // Getters and setters implementation

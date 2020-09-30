@@ -54,6 +54,17 @@ int main(int argc, char *argv[])
     mServer->widthChangedHandler(window->width());
     });
 
+    QObject::connect(context, &QQmlContext::destroyed, [&](){
+    browserProcess.closeProcessHandler();
+    });
+
+
+
+
+
+
+
+
 
     return app.exec();
 }

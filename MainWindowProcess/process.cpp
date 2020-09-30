@@ -28,8 +28,7 @@ void Process::startProcess(int mainWindowsHeight, int height, int width)
     }
 }
 
-void Process::killProcess()
+void Process::closeProcessHandler()
 {
-    //Todo: implement
-    system("taskkill /F /T /IM browserWindowProcess.exe");
+    process->close();
 }

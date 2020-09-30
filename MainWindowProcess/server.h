@@ -19,7 +19,6 @@ public:
     void heightChangedHandler(int height);
     void widthChangedHandler(int width);
 
-
     // Setters and getters
     qint64 getWindowHeight() const;
     void setWindowHeight(qint64 value);
@@ -33,6 +32,7 @@ signals:
 public slots:
     void sendWelcome();
     void processVisibilityHandler(bool visibility);
+
 
 private:
     QLocalServer *mServer;

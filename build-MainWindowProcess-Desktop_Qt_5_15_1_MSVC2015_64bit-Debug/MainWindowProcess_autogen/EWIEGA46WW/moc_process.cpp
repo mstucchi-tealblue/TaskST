@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Process_t {
     QByteArrayData data[7];
-    char stringdata0[64];
+    char stringdata0[72];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,11 +38,11 @@ QT_MOC_LITERAL(2, 21, 0), // ""
 QT_MOC_LITERAL(3, 22, 16), // "mainWindowHeight"
 QT_MOC_LITERAL(4, 39, 6), // "height"
 QT_MOC_LITERAL(5, 46, 5), // "width"
-QT_MOC_LITERAL(6, 52, 11) // "killProcess"
+QT_MOC_LITERAL(6, 52, 19) // "closeProcessHandler"
 
     },
     "Process\0startProcess\0\0mainWindowHeight\0"
-    "height\0width\0killProcess"
+    "height\0width\0closeProcessHandler"
 };
 #undef QT_MOC_LITERAL
 
@@ -77,7 +77,7 @@ void Process::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->startProcess((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
-        case 1: _t->killProcess(); break;
+        case 1: _t->closeProcessHandler(); break;
         default: ;
         }
     }
