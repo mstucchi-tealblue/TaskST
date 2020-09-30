@@ -26,9 +26,7 @@ int main(int argc, char *argv[])
 
     Process browserProcess(QString("browserProcess"));
 
-
-    context->setContextProperty("browserProcess",&browserProcess);
-    context->setContextProperty("localServer",mServer);
+    context->setContextProperty("mServer",mServer);
     context->setContextProperty("pid",QCoreApplication::applicationPid());
 
 
@@ -55,13 +53,6 @@ int main(int argc, char *argv[])
     QObject::connect(window, &QQuickWindow::widthChanged, [&](){
     mServer->widthChangedHandler(window->width());
     });
-
-    QObject::connect(window, &QQuickWindow::colorChanged, [&](){
-    mServer->processVisibilityHandler(window->color()=="blue");
-    });
-
-
-
 
 
     return app.exec();

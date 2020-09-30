@@ -47,6 +47,7 @@ void server::widthChangedHandler(int width)
 
 void server::processVisibilityHandler(bool visibility)
 {
+    qDebug() << visibility;
     if(visibility)
         clientConnection->write("Vis-true");
     else

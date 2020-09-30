@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_server_t {
-    QByteArrayData data[7];
-    char stringdata0[84];
+    QByteArrayData data[9];
+    char stringdata0[120];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,12 +37,15 @@ QT_MOC_LITERAL(1, 7, 19), // "windowHeightChanged"
 QT_MOC_LITERAL(2, 27, 0), // ""
 QT_MOC_LITERAL(3, 28, 18), // "windowWidthChanged"
 QT_MOC_LITERAL(4, 47, 11), // "sendWelcome"
-QT_MOC_LITERAL(5, 59, 12), // "windowHeight"
-QT_MOC_LITERAL(6, 72, 11) // "windowWidth"
+QT_MOC_LITERAL(5, 59, 24), // "processVisibilityHandler"
+QT_MOC_LITERAL(6, 84, 10), // "visibility"
+QT_MOC_LITERAL(7, 95, 12), // "windowHeight"
+QT_MOC_LITERAL(8, 108, 11) // "windowWidth"
 
     },
     "server\0windowHeightChanged\0\0"
     "windowWidthChanged\0sendWelcome\0"
+    "processVisibilityHandler\0visibility\0"
     "windowHeight\0windowWidth"
 };
 #undef QT_MOC_LITERAL
@@ -53,19 +56,20 @@ static const uint qt_meta_data_server[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
-       2,   32, // properties
+       4,   14, // methods
+       2,   40, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x06 /* Public */,
-       3,    0,   30,    2, 0x06 /* Public */,
+       1,    0,   34,    2, 0x06 /* Public */,
+       3,    0,   35,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   31,    2, 0x0a /* Public */,
+       4,    0,   36,    2, 0x0a /* Public */,
+       5,    1,   37,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -73,10 +77,11 @@ static const uint qt_meta_data_server[] = {
 
  // slots: parameters
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,    6,
 
  // properties: name, type, flags
-       5, QMetaType::Int, 0x00495103,
-       6, QMetaType::Int, 0x00495103,
+       7, QMetaType::Int, 0x00495103,
+       8, QMetaType::Int, 0x00495103,
 
  // properties: notify_signal_id
        0,
@@ -94,6 +99,7 @@ void server::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 0: _t->windowHeightChanged(); break;
         case 1: _t->windowWidthChanged(); break;
         case 2: _t->sendWelcome(); break;
+        case 3: _t->processVisibilityHandler((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -135,7 +141,6 @@ void server::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
     } else if (_c == QMetaObject::ResetProperty) {
     }
 #endif // QT_NO_PROPERTIES
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject server::staticMetaObject = { {
@@ -167,13 +172,13 @@ int server::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 3;
+        _id -= 4;
     }
 #ifndef QT_NO_PROPERTIES
     else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
