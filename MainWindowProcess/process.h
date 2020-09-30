@@ -12,7 +12,7 @@ public:
     Process(QString processName);
 
 public slots:
-    void startProcessFromQml(int mainWindowHeight,int height, int width);
+    void startProcess(int mainWindowHeight,int height, int width);
     void killProcess();
 
 private:

@@ -7,7 +7,7 @@ Process::Process(QString processName)
     name = processName;
 }
 
-void Process::startProcessFromQml(int mainWindowsHeight, int height, int width)
+void Process::startProcess(int mainWindowsHeight, int height, int width)
 {
     QObject *parent = 0;
     process = new QProcess(parent);

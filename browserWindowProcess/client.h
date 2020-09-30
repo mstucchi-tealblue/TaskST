@@ -14,6 +14,7 @@ class client : public QObject
     Q_PROPERTY(QString receivedFromSever READ getReceivedFromServer WRITE setReceivedFromServer NOTIFY receivedFromServerChanged)
     Q_PROPERTY(int windowHeight READ getWindowHeight WRITE setWindowHeight NOTIFY windowHeightChanged)
     Q_PROPERTY(int windowWidth READ getWindowWidth WRITE setWindowWidth NOTIFY windowWidthChanged)
+    Q_PROPERTY(int windowVisibility READ getWindowVisibility WRITE setWindowVisibility NOTIFY windowVisibilityChanged)
     Q_PROPERTY(int initialHeight READ getInitialHeight WRITE setInitialHeight)
     Q_PROPERTY(int initialWidth READ getInitialWidth WRITE setInitialWidth)
     Q_PROPERTY(int wrapperWindowHeight READ getWrapperWindowHeight WRITE setWrapperWindowHeight)
@@ -35,11 +36,14 @@ public:
     void setInitialWidth(int value);
     int getWrapperWindowHeight() const;
     void setWrapperWindowHeight(int value);
+    bool getWindowVisibility() const;
+    void setWindowVisibility(bool value);
 
 signals:
     void receivedFromServerChanged();
     void windowHeightChanged();
     void windowWidthChanged();
+    void windowVisibilityChanged();
 
 public slots:
     void readWelcome();
@@ -51,12 +55,12 @@ private:
     //Real-time dimension parameters
     qint64 windowHeight;
     qint64 windowWidth;
+    bool windowVisibility = false;
 
     //Positioning parameters
     int initialHeight;
     int initialWidth;
     int wrapperWindowHeight;
-
 };
 
 #endif // CLIENT_H

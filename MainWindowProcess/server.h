@@ -18,6 +18,7 @@ public:
 
     void heightChangedHandler(int height);
     void widthChangedHandler(int width);
+    void processVisibilityHandler(bool visibility);
 
     // Setters and getters
     qint64 getWindowHeight() const;

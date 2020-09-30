@@ -45,6 +45,16 @@ void server::widthChangedHandler(int width)
     clientConnection->flush();
 }
 
+void server::processVisibilityHandler(bool visibility)
+{
+    if(visibility)
+        clientConnection->write("Vis-true");
+    else
+        clientConnection->write("Vis-false");
+
+    clientConnection->flush();
+}
+
 //Slots:
 void server::sendWelcome()
 {

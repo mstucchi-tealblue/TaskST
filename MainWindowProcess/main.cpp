@@ -25,6 +25,8 @@ int main(int argc, char *argv[])
     QQmlContext* context = engine.rootContext();
 
     Process browserProcess(QString("browserProcess"));
+
+
     context->setContextProperty("browserProcess",&browserProcess);
     context->setContextProperty("localServer",mServer);
     context->setContextProperty("pid",QCoreApplication::applicationPid());
@@ -43,7 +45,8 @@ int main(int argc, char *argv[])
     auto window = qobject_cast<QQuickWindow *>(topLevelObject);
     window->show();
 
-    qDebug() << window->width() << window->height();
+    //Start the process unvisible
+    browserProcess.startProcess(window->height(),window->height()-50, window->width());
 
     QObject::connect(window, &QQuickWindow::heightChanged, [&](){
     mServer->heightChangedHandler(window->height()-50);
@@ -52,6 +55,14 @@ int main(int argc, char *argv[])
     QObject::connect(window, &QQuickWindow::widthChanged, [&](){
     mServer->widthChangedHandler(window->width());
     });
+
+    QObject::connect(window, &QQuickWindow::colorChanged, [&](){
+    mServer->processVisibilityHandler(window->color()=="blue");
+    });
+
+
+
+
 
     return app.exec();
 }

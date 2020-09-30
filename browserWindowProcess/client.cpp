@@ -40,6 +40,17 @@ void client::setReceivedFromServer(QString fromServer)
         return;
     }
 
+    if(fromServer.mid(0,4) == "Vis-")
+    {
+        fromServer.remove(0,4);
+        if(fromServer == "true")
+            setWindowVisibility(true);
+
+        if(fromServer == "false")
+            setWindowVisibility(false);
+        return;
+    }
+
     //Textual content handler (Patient...)
     if (fromServer != receivedFromSever) {
         receivedFromSever = fromServer;
@@ -79,6 +90,17 @@ int client::getWrapperWindowHeight() const
 void client::setWrapperWindowHeight(int value)
 {
     wrapperWindowHeight = value;
+}
+
+bool client::getWindowVisibility() const
+{
+    return windowVisibility;
+}
+
+void client::setWindowVisibility(bool value)
+{
+    windowVisibility = value;
+    emit windowVisibilityChanged();
 }
 
 qint64 client::getWindowWidth() const

@@ -6,7 +6,7 @@ import QtQuick.Controls 2.5
 Window {
     width: mClient.windowWidth
     height: mClient.windowHeight
-    visible: true
+    visible: mClient.windowVisibility
     title: qsTr("Hello World")
     flags: Window.FramelessWindowHint
     Component.onCompleted: {

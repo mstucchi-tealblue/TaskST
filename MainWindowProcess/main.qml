@@ -4,6 +4,8 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5
 
 Window {
+
+    //signal changeProcessVisibility(bool visibility)
     id: mainWindow
     width: 640
     height: 480
@@ -29,7 +31,6 @@ Window {
                     highlighted = !highlighted
                     homeButton.highlighted = false
                     browserButton.highlighted = false
-                    //browserProcess.killProcessFromQml();
                 }
 
             }
@@ -40,7 +41,6 @@ Window {
                     highlighted = !highlighted
                     loginButton.highlighted = false
                     browserButton.highlighted = false
-                    //browserProcess.killProcessFromQml();
                 }
             }
             Button {
@@ -51,11 +51,12 @@ Window {
                     highlighted = !highlighted
                     loginButton.highlighted = false
                     homeButton.highlighted = false
-                    browserProcess.startProcessFromQml(mainWindow.height,
-                                                       mainWindow.height-firstRow.height-10,
-                                                       mainWindow.width)
+                    //process visibility changer
+                    //mainWindow.changeProcessVisibility(highlighted)
+                    highlighted ? mainWindow.color = "blue" : mainWindow.color = "green";
                 }
             }
+
             Button {
                 text: "Analysis"
             }

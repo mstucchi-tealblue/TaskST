@@ -1,7 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include <QWindow>
+#include <QQuickWindow>
 #include "client.h"
 
 int main(int argc, char *argv[])
