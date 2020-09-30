@@ -26,5 +26,11 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
+    auto topLevelObject = engine.rootObjects().value(0);
+    auto window = qobject_cast<QQuickWindow *>(topLevelObject);
+    window->setFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
+
+
+
     return app.exec();
 }

@@ -8,7 +8,7 @@ Window {
     height: mClient.windowHeight
     visible: mClient.windowVisibility
     title: qsTr("Hello World")
-    flags: Window.FramelessWindowHint
+    //flags: Window.FramelessWindowHint
     Component.onCompleted: {
         setX(Screen.width / 2 - width / 2);
         setY(Screen.height / 2 - height / 2 +((mClient.wrapperWindowHeight - mClient.initialHeight)/2));
