@@ -17,6 +17,7 @@ public:
 protected:
     void resizeEvent(QResizeEvent *ev) ;
 
+
 signals:
 
 };

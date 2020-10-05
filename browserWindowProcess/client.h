@@ -11,7 +11,7 @@
 class client : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString receivedFromSever READ getReceivedFromServer WRITE setReceivedFromServer NOTIFY receivedFromServerChanged)
+    Q_PROPERTY(QByteArray receivedFromSever READ getReceivedFromServer WRITE setReceivedFromServer NOTIFY receivedFromServerChanged)
     Q_PROPERTY(int windowHeight READ getWindowHeight WRITE setWindowHeight NOTIFY windowHeightChanged)
     Q_PROPERTY(int windowWidth READ getWindowWidth WRITE setWindowWidth NOTIFY windowWidthChanged)
     Q_PROPERTY(int windowX READ getWindowX WRITE setWindowX NOTIFY windowXChanged)
@@ -26,8 +26,8 @@ public:
     explicit client(QObject *parent = nullptr);
 
     // Getter and setter of the properties
-    QString getReceivedFromServer() ;
-    void setReceivedFromServer(QString fromServer) ;
+    QByteArray getReceivedFromServer() ;
+    void setReceivedFromServer(QByteArray fromServer) ;
     qint64 getWindowHeight() const;
     void setWindowHeight(const qint64 &value);
     qint64 getWindowWidth() const;
@@ -59,7 +59,7 @@ public slots:
 
 private:
     QLocalSocket *socket;
-    QString receivedFromSever;
+    QByteArray receivedFromSever;
 
     //Real-time dimension parameters
     qint64 windowHeight;

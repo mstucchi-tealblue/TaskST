@@ -24,7 +24,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Core Quick Network REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick Network Widgets Gui REQUIRED)
 
 if(ANDROID)
     add_library(MainWindowProcess SHARED
@@ -49,4 +49,4 @@ target_compile_definitions(MainWindowProcess
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
 target_link_libraries(MainWindowProcess
-  PRIVATE Qt5::Core Qt5::Quick Qt5::Network)
+  PRIVATE Qt5::Core Qt5::Quick Qt5::Network Qt5::Widgets Qt5::Gui)

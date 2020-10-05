@@ -38,32 +38,54 @@ int main(int argc, char *argv[])
 
     //It is for managing the Qml window from c++
     auto topLevelObject = engine.rootObjects().value(0);
-    // auto window = qobject_cast<mywindow *>(topLevelObject); //Cast to mywindow
-    auto window = qobject_cast<QQuickWindow *>(topLevelObject); //Cast to mywindow
+    auto window = qobject_cast<QQuickWindow *>(topLevelObject);
+    //auto window = ((mywindow *)topLevelObject); //Cast to mywindow
+
     window->show();
 
     //Start the process unvisible
     browserProcess.startProcess(window->height(),window->height()-50, window->width(), window->x(), window->y()+50);
 
+//    QObject::connect(window, &QQuickWindow::heightChanged, [&](){
+//    mServer->heightChangedHandler(window->height()-50);
+//    });
+
+//    QObject::connect(window, &QQuickWindow::widthChanged, [&](){
+//    mServer->widthChangedHandler(window->width());
+//    });
+
+//    QObject::connect(window, &QQuickWindow::xChanged, [&](){
+//    mServer->xChangeHandler(window->x());
+//    });
+
+//    QObject::connect(window, &QQuickWindow::yChanged, [&](){
+//    mServer->yChangeHandler(window->y());
+//    });
+
     QObject::connect(window, &QQuickWindow::heightChanged, [&](){
-    mServer->heightChangedHandler(window->height()-50);
+    mServer->geometryHandler(window->geometry());
     });
 
     QObject::connect(window, &QQuickWindow::widthChanged, [&](){
-    mServer->widthChangedHandler(window->width());
+    mServer->geometryHandler(window->geometry());
     });
 
     QObject::connect(window, &QQuickWindow::xChanged, [&](){
-    mServer->xChangeHandler(window->x());
+    mServer->geometryHandler(window->geometry());
     });
 
     QObject::connect(window, &QQuickWindow::yChanged, [&](){
-    mServer->yChangeHandler(window->y());
+    mServer->geometryHandler(window->geometry());
     });
+
+
+
+
 
     QObject::connect(context, &QQmlContext::destroyed, [&](){
     browserProcess.closeProcessHandler();
     });
+
 
 
 

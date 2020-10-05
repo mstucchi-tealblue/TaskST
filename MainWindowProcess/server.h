@@ -6,6 +6,7 @@
 #include <QLocalSocket>
 #include <QDataStream>
 #include <string>
+#include <QRect>
 
 class server : public QObject
 {
@@ -18,6 +19,8 @@ public:
     void widthChangedHandler(int width);
     void xChangeHandler(int x);
     void yChangeHandler(int y);
+
+    void geometryHandler(QRect windowRect);
 
     // Setters and getters
     qint64 getWindowHeight() const;

@@ -73,6 +73,26 @@ void server::yChangeHandler(int y)
     clientConnection->flush();
 }
 
+void server::geometryHandler(QRect windowRect)
+{
+    QByteArray qByteX;
+    QByteArray qByteY;
+    QByteArray qByteWidth;
+    QByteArray qByteHeight;
+
+    QByteArray qByteGeoPrefix = "G";
+
+
+    qByteX.setNum(windowRect.x());
+    qByteY.setNum(windowRect.y());
+    qByteWidth.setNum(windowRect.width());
+    qByteHeight.setNum(windowRect.height());
+
+    qDebug()<<qByteGeoPrefix + qByteX + qByteGeoPrefix + qByteY + qByteGeoPrefix + qByteWidth + qByteGeoPrefix  + qByteHeight  ;
+    clientConnection->write(qByteGeoPrefix + qByteX + qByteGeoPrefix + qByteY + qByteGeoPrefix + qByteWidth + qByteGeoPrefix  + qByteHeight );
+    clientConnection->flush();
+}
+
 void server::processVisibilityHandler(bool visibility)
 {
     if(visibility)

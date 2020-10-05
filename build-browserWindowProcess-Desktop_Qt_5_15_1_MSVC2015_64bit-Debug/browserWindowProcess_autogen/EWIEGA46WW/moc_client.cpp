@@ -99,7 +99,7 @@ static const uint qt_meta_data_client[] = {
     QMetaType::Void,
 
  // properties: name, type, flags
-       9, QMetaType::QString, 0x00495003,
+       9, QMetaType::QByteArray, 0x00495003,
       10, QMetaType::Int, 0x00495103,
       11, QMetaType::Int, 0x00495103,
       12, QMetaType::Int, 0x00495103,
@@ -189,7 +189,7 @@ void client::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         Q_UNUSED(_t)
         void *_v = _a[0];
         switch (_id) {
-        case 0: *reinterpret_cast< QString*>(_v) = _t->getReceivedFromServer(); break;
+        case 0: *reinterpret_cast< QByteArray*>(_v) = _t->getReceivedFromServer(); break;
         case 1: *reinterpret_cast< int*>(_v) = _t->getWindowHeight(); break;
         case 2: *reinterpret_cast< int*>(_v) = _t->getWindowWidth(); break;
         case 3: *reinterpret_cast< int*>(_v) = _t->getWindowX(); break;
@@ -205,7 +205,7 @@ void client::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         Q_UNUSED(_t)
         void *_v = _a[0];
         switch (_id) {
-        case 0: _t->setReceivedFromServer(*reinterpret_cast< QString*>(_v)); break;
+        case 0: _t->setReceivedFromServer(*reinterpret_cast< QByteArray*>(_v)); break;
         case 1: _t->setWindowHeight(*reinterpret_cast< int*>(_v)); break;
         case 2: _t->setWindowWidth(*reinterpret_cast< int*>(_v)); break;
         case 3: _t->setWindowX(*reinterpret_cast< int*>(_v)); break;

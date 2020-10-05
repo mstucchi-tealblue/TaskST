@@ -29,6 +29,8 @@ int main(int argc, char *argv[])
     auto topLevelObject = engine.rootObjects().value(0);
     auto window = qobject_cast<QQuickWindow *>(topLevelObject);
     window->setFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
+    window->setGeometry(mClient.getWindowX(),mClient.getWindowY(),mClient.getWindowWidth(),mClient.getWindowHeight());
+
 
 
     return app.exec();

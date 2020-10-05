@@ -24,10 +24,22 @@ void client::readWelcome()
     qDebug() << receivedFromSever;
 }
 
-void client::setReceivedFromServer(QString fromServer)
+void client::setReceivedFromServer(QByteArray fromServer)
 {
+    if(fromServer.at(0) == 'G')
+    {
+        QList<QByteArray> dims = fromServer.split('G');
+
+        setWindowX(dims.at(1).toInt());
+        setWindowY(dims.at(2).toInt());
+        setWindowWidth(dims.at(3).toInt());
+        setWindowHeight(dims.at(4).toInt());
+        return;
+    }
+
+
     //Height handler
-    if(fromServer.at(0) == "h")
+    if(fromServer.at(0) == 'h')
     {
         fromServer.remove(0,1);
         setWindowHeight(fromServer.toInt());
@@ -35,7 +47,7 @@ void client::setReceivedFromServer(QString fromServer)
     }
 
     //Width handler
-    if(fromServer.at(0) == "w")
+    if(fromServer.at(0) == 'w')
     {
         fromServer.remove(0,1);
         setWindowWidth(fromServer.toInt());
@@ -43,14 +55,14 @@ void client::setReceivedFromServer(QString fromServer)
     }
 
     //X Handler
-    if(fromServer.at(0) == "x")
+    if(fromServer.at(0) == 'x')
     {
         fromServer.remove(0,1);
         setWindowX(fromServer.toInt());
         return;
     }
 
-    if(fromServer.at(0) == "y")
+    if(fromServer.at(0) == 'y')
     {
         fromServer.remove(0,1);
         setWindowY(fromServer.toInt());
@@ -165,7 +177,7 @@ void client::setWindowHeight(const qint64 &value)
     emit windowHeightChanged();
 }
 
-QString client::getReceivedFromServer()
+QByteArray client::getReceivedFromServer()
 {
     return receivedFromSever;
 }
