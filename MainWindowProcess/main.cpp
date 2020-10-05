@@ -5,12 +5,10 @@
 #include <QQmlComponent>
 #include <QQuickWindow>
 #include <QObject>
-#include <QSignalMapper>
-#include <Windows.h>
+
 #include "process.h"
 #include "server.h"
-
-
+#include "mywindow.h"
 
 int main(int argc, char *argv[])
 {
@@ -40,7 +38,8 @@ int main(int argc, char *argv[])
 
     //It is for managing the Qml window from c++
     auto topLevelObject = engine.rootObjects().value(0);
-    auto window = qobject_cast<QQuickWindow *>(topLevelObject);
+    // auto window = qobject_cast<mywindow *>(topLevelObject); //Cast to mywindow
+    auto window = qobject_cast<QQuickWindow *>(topLevelObject); //Cast to mywindow
     window->show();
 
     //Start the process unvisible
@@ -54,13 +53,13 @@ int main(int argc, char *argv[])
     mServer->widthChangedHandler(window->width());
     });
 
-//    QObject::connect(window, &QQuickWindow::xChanged, [&](){
-//    mServer->xChangeHandler(window->x());
-//    });
+    QObject::connect(window, &QQuickWindow::xChanged, [&](){
+    mServer->xChangeHandler(window->x());
+    });
 
-//    QObject::connect(window, &QQuickWindow::yChanged, [&](){
-//    mServer->yChangeHandler(window->y());
-//    });
+    QObject::connect(window, &QQuickWindow::yChanged, [&](){
+    mServer->yChangeHandler(window->y());
+    });
 
     QObject::connect(context, &QQmlContext::destroyed, [&](){
     browserProcess.closeProcessHandler();

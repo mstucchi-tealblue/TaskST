@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5
 
 Window {
+    id: root
     x: mClient.windowX
     y: mClient.windowY
     width: mClient.windowWidth
@@ -25,7 +26,7 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 placeholderText: "Nothing received yet"
-                text: mClient.receivedFromSever
+                text: " height: " + root.height + " width: " + root.width + " x: " + root.x + " y:" + root.y
                 anchors.centerIn: parent
             }
         }

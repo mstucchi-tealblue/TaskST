@@ -30,5 +30,6 @@ int main(int argc, char *argv[])
     auto window = qobject_cast<QQuickWindow *>(topLevelObject);
     window->setFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
 
+
     return app.exec();
 }

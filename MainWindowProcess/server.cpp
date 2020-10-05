@@ -19,7 +19,8 @@ server::server(QObject *parent) : QObject(parent)
 // Height and width updaters
 void server::heightChangedHandler(int height)
 {
-    setWindowHeight(height);
+    //setWindowHeight(height);
+    qDebug() << "External height:" << height;
 
     QByteArray qByteHeight;
     QByteArray qBytePrefix;
@@ -33,7 +34,9 @@ void server::heightChangedHandler(int height)
 
 void server::widthChangedHandler(int width)
 {
-    setWindowWidth(width);
+    //setWindowWidth(width);
+
+    qDebug() << "External width:" << width;
 
     QByteArray qByteWidth;
     QByteArray qBytePrefix;
@@ -46,6 +49,8 @@ void server::widthChangedHandler(int width)
 
 void server::xChangeHandler(int x)
 {
+
+    qDebug() << "External x:" << x;
     QByteArray qByteX;
     QByteArray qBytePrefix;
 
@@ -57,6 +62,8 @@ void server::xChangeHandler(int x)
 
 void server::yChangeHandler(int y)
 {
+
+    qDebug() << "External y" << y;
     QByteArray qByteY;
     QByteArray qBytePrefix;
 

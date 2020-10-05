@@ -39,14 +39,14 @@ else()
     add_executable(MainWindowProcess
       main.cpp
       qml.qrc
-      process.h
       process.cpp
-      server.h
       server.cpp
+      mywindow.cpp
     )
 endif()
 
 target_compile_definitions(MainWindowProcess
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+
 target_link_libraries(MainWindowProcess
   PRIVATE Qt5::Core Qt5::Quick Qt5::Network)
