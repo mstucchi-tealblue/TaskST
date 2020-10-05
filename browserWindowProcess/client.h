@@ -20,6 +20,8 @@ class client : public QObject
     Q_PROPERTY(int initialHeight READ getInitialHeight WRITE setInitialHeight)
     Q_PROPERTY(int initialWidth READ getInitialWidth WRITE setInitialWidth)
     Q_PROPERTY(int wrapperWindowHeight READ getWrapperWindowHeight WRITE setWrapperWindowHeight)
+    Q_PROPERTY(int initialX READ getInitialX WRITE setInitialX)
+    Q_PROPERTY(int initialY READ getInitialY WRITE setInitialY)
 
 public:
     explicit client(QString initialHeight, QString  initialWidth, QString  wrapperWindowHeight, QString windowX, QString windowY, QObject *parent = nullptr);
@@ -44,7 +46,10 @@ public:
     void setInitialWidth(int value);
     int getWrapperWindowHeight() const;
     void setWrapperWindowHeight(int value);
-
+    int getInitialX() const;
+    void setInitialX(int value);
+    int getInitialY() const;
+    void setInitialY(int value);
 
 signals:
     void receivedFromServerChanged();
@@ -55,7 +60,7 @@ signals:
     void windowVisibilityChanged();
 
 public slots:
-    void readWelcome();
+    void readContentFromServer();
 
 private:
     QLocalSocket *socket;
@@ -72,6 +77,8 @@ private:
     //Positioning parameters
     int initialHeight;
     int initialWidth;
+    int initialX;
+    int initialY;
     int wrapperWindowHeight;
 };
 

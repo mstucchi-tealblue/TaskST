@@ -29,9 +29,23 @@ int main(int argc, char *argv[])
     auto topLevelObject = engine.rootObjects().value(0);
     auto window = qobject_cast<QQuickWindow *>(topLevelObject);
     window->setFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
-    window->setGeometry(mClient.getWindowX(),mClient.getWindowY(),mClient.getWindowWidth(),mClient.getWindowHeight());
 
+    //implement connection signal/setGeometry
+    QObject::connect(&mClient, &client::windowXChanged, [&](){
+        window->setGeometry(mClient.getWindowX(), mClient.getWindowY(), mClient.getWindowWidth(), mClient.getWindowHeight());
+        });
 
+    QObject::connect(&mClient, &client::windowYChanged, [&](){
+        window->setGeometry(mClient.getWindowX(), mClient.getWindowY(), mClient.getWindowWidth(), mClient.getWindowHeight());
+        });
+
+    QObject::connect(&mClient, &client::windowWidthChanged, [&](){
+        window->setGeometry(mClient.getWindowX(), mClient.getWindowY(), mClient.getWindowWidth(), mClient.getWindowHeight());
+        });
+
+    QObject::connect(&mClient, &client::windowHeightChanged, [&](){
+        window->setGeometry(mClient.getWindowX(), mClient.getWindowY(), mClient.getWindowWidth(), mClient.getWindowHeight());
+        });
 
     return app.exec();
 }

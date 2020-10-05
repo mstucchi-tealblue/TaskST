@@ -30,9 +30,7 @@ if(ANDROID)
     add_library(MainWindowProcess SHARED
       main.cpp
       qml.qrc
-      process.h
-      process.cpp
-      server.h
+      process.cpp      
       server.cpp
     )
 else()
@@ -41,7 +39,6 @@ else()
       qml.qrc
       process.cpp
       server.cpp
-      mywindow.cpp
     )
 endif()
 

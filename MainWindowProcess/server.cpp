@@ -13,64 +13,7 @@ server::server(QObject *parent) : QObject(parent)
         qDebug() << "Server started";
     }
 
-    connect(mServer, &QLocalServer::newConnection, this, &server::sendWelcome);
-}
-
-// Height and width updaters
-void server::heightChangedHandler(int height)
-{
-    //setWindowHeight(height);
-    qDebug() << "External height:" << height;
-
-    QByteArray qByteHeight;
-    QByteArray qBytePrefix;
-
-    qByteHeight.setNum(height);
-    qBytePrefix = "h";
-    clientConnection->write(qBytePrefix + qByteHeight);
-    clientConnection->flush();
-
-}
-
-void server::widthChangedHandler(int width)
-{
-    //setWindowWidth(width);
-
-    qDebug() << "External width:" << width;
-
-    QByteArray qByteWidth;
-    QByteArray qBytePrefix;
-
-    qByteWidth.setNum(width);
-    qBytePrefix = "w";
-    clientConnection->write(qBytePrefix + qByteWidth);
-    clientConnection->flush();
-}
-
-void server::xChangeHandler(int x)
-{
-
-    qDebug() << "External x:" << x;
-    QByteArray qByteX;
-    QByteArray qBytePrefix;
-
-    qByteX.setNum(x);
-    qBytePrefix = "x";
-    clientConnection->write(qBytePrefix + qByteX);
-    clientConnection->flush();
-}
-
-void server::yChangeHandler(int y)
-{
-
-    qDebug() << "External y" << y;
-    QByteArray qByteY;
-    QByteArray qBytePrefix;
-
-    qByteY.setNum(y);
-    qBytePrefix = "y";
-    clientConnection->write(qBytePrefix + qByteY);
-    clientConnection->flush();
+    connect(mServer, &QLocalServer::newConnection, this, &server::startCommunication);
 }
 
 void server::geometryHandler(QRect windowRect)
@@ -82,13 +25,11 @@ void server::geometryHandler(QRect windowRect)
 
     QByteArray qByteGeoPrefix = "G";
 
-
     qByteX.setNum(windowRect.x());
-    qByteY.setNum(windowRect.y());
+    qByteY.setNum(windowRect.y()+50);
     qByteWidth.setNum(windowRect.width());
-    qByteHeight.setNum(windowRect.height());
+    qByteHeight.setNum(windowRect.height()-50);
 
-    qDebug()<<qByteGeoPrefix + qByteX + qByteGeoPrefix + qByteY + qByteGeoPrefix + qByteWidth + qByteGeoPrefix  + qByteHeight  ;
     clientConnection->write(qByteGeoPrefix + qByteX + qByteGeoPrefix + qByteY + qByteGeoPrefix + qByteWidth + qByteGeoPrefix  + qByteHeight );
     clientConnection->flush();
 }
@@ -104,35 +45,10 @@ void server::processVisibilityHandler(bool visibility)
 }
 
 //Slots:
-void server::sendWelcome()
+void server::startCommunication()
 {
     clientConnection = mServer->nextPendingConnection();
-    //    connect(clientConnection, &QLocalSocket::disconnected, clientConnection, &QLocalSocket::deleteLater);
-    clientConnection->write("Welcome client");
-    clientConnection->flush();
 }
 
-// Getters and setters implementation
-qint64 server::getWindowWidth() const
-{
-    return windowWidth;
-}
-
-void server::setWindowWidth(qint64 value)
-{
-    windowWidth = value;
-}
-
-qint64 server::getWindowHeight() const
-{
-    return windowHeight;
-}
-
-void server::setWindowHeight(qint64 value)
-{
-    if (value != windowHeight) {
-        windowHeight = value;
-    }
-}
 
 

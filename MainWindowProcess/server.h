@@ -14,32 +14,18 @@ class server : public QObject
 
 public:
     explicit server(QObject *parent = nullptr);
-
-    void heightChangedHandler(int height);
-    void widthChangedHandler(int width);
-    void xChangeHandler(int x);
-    void yChangeHandler(int y);
-
     void geometryHandler(QRect windowRect);
-
-    // Setters and getters
-    qint64 getWindowHeight() const;
-    void setWindowHeight(qint64 value);
-    qint64 getWindowWidth() const;
-    void setWindowWidth(qint64 value);
 
 signals:
 
 
 public slots:
-    void sendWelcome();
+    void startCommunication();
     void processVisibilityHandler(bool visibility);
 
 private:
     QLocalServer *mServer;
     QLocalSocket *clientConnection;
-    qint64 windowHeight = 0;
-    qint64 windowWidth = 0;
 
 };
 

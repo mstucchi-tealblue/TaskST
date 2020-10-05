@@ -5,10 +5,9 @@
 #include <QQmlComponent>
 #include <QQuickWindow>
 #include <QObject>
-
 #include "process.h"
 #include "server.h"
-#include "mywindow.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -27,7 +26,6 @@ int main(int argc, char *argv[])
     context->setContextProperty("mServer",mServer);
     context->setContextProperty("pid",QCoreApplication::applicationPid());
 
-
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
         if (!obj && url == objUrl)
@@ -39,28 +37,11 @@ int main(int argc, char *argv[])
     //It is for managing the Qml window from c++
     auto topLevelObject = engine.rootObjects().value(0);
     auto window = qobject_cast<QQuickWindow *>(topLevelObject);
-    //auto window = ((mywindow *)topLevelObject); //Cast to mywindow
 
     window->show();
 
-    //Start the process unvisible
+    //Start the process invisible
     browserProcess.startProcess(window->height(),window->height()-50, window->width(), window->x(), window->y()+50);
-
-//    QObject::connect(window, &QQuickWindow::heightChanged, [&](){
-//    mServer->heightChangedHandler(window->height()-50);
-//    });
-
-//    QObject::connect(window, &QQuickWindow::widthChanged, [&](){
-//    mServer->widthChangedHandler(window->width());
-//    });
-
-//    QObject::connect(window, &QQuickWindow::xChanged, [&](){
-//    mServer->xChangeHandler(window->x());
-//    });
-
-//    QObject::connect(window, &QQuickWindow::yChanged, [&](){
-//    mServer->yChangeHandler(window->y());
-//    });
 
     QObject::connect(window, &QQuickWindow::heightChanged, [&](){
     mServer->geometryHandler(window->geometry());
@@ -77,10 +58,6 @@ int main(int argc, char *argv[])
     QObject::connect(window, &QQuickWindow::yChanged, [&](){
     mServer->geometryHandler(window->geometry());
     });
-
-
-
-
 
     QObject::connect(context, &QQmlContext::destroyed, [&](){
     browserProcess.closeProcessHandler();

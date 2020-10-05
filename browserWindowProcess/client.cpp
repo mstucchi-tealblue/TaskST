@@ -5,12 +5,15 @@ client::client(QObject *parent) : QObject(parent){ }
 client::client(QString  initialHeight, QString  initialWidth, QString  wrapperWindowHeight, QString windowX, QString windowY, QObject *parent) : QObject(parent)
 {
     socket = new QLocalSocket(this);
-    connect(socket, &QLocalSocket::readyRead, this, &client::readWelcome);
+    connect(socket, &QLocalSocket::readyRead, this, &client::readContentFromServer);
     socket->connectToServer("ServerName");
 
     setInitialHeight(initialHeight.toInt());
     setInitialWidth(initialWidth.toInt());
     setWrapperWindowHeight(wrapperWindowHeight.toInt());
+    setInitialX(windowX.toInt());
+    setInitialY(windowY.toInt());
+
     setWindowHeight(initialHeight.toInt());
     setWindowWidth(initialWidth.toInt());
     setWindowX(windowX.toInt());
@@ -18,7 +21,7 @@ client::client(QString  initialHeight, QString  initialWidth, QString  wrapperWi
 }
 
 //Server incoming contents handlers
-void client::readWelcome()
+void client::readContentFromServer()
 {
     setReceivedFromServer(socket->readAll());
     qDebug() << receivedFromSever;
@@ -29,43 +32,10 @@ void client::setReceivedFromServer(QByteArray fromServer)
     if(fromServer.at(0) == 'G')
     {
         QList<QByteArray> dims = fromServer.split('G');
-
         setWindowX(dims.at(1).toInt());
         setWindowY(dims.at(2).toInt());
         setWindowWidth(dims.at(3).toInt());
         setWindowHeight(dims.at(4).toInt());
-        return;
-    }
-
-
-    //Height handler
-    if(fromServer.at(0) == 'h')
-    {
-        fromServer.remove(0,1);
-        setWindowHeight(fromServer.toInt());
-        return;
-    }
-
-    //Width handler
-    if(fromServer.at(0) == 'w')
-    {
-        fromServer.remove(0,1);
-        setWindowWidth(fromServer.toInt());
-        return;
-    }
-
-    //X Handler
-    if(fromServer.at(0) == 'x')
-    {
-        fromServer.remove(0,1);
-        setWindowX(fromServer.toInt());
-        return;
-    }
-
-    if(fromServer.at(0) == 'y')
-    {
-        fromServer.remove(0,1);
-        setWindowY(fromServer.toInt());
         return;
     }
 
@@ -83,15 +53,13 @@ void client::setReceivedFromServer(QByteArray fromServer)
 
     //Textual content handler (Patient...)
     if (fromServer != receivedFromSever) {
-        receivedFromSever = fromServer;
-        emit receivedFromServerChanged();
+        receivedFromSever = fromServer;        
     }
+
+    emit receivedFromServerChanged();
 }
 
-
-
 //Getters and setters implementation
-
 int client::getInitialWidth() const
 {
     return initialWidth;
@@ -180,6 +148,26 @@ void client::setWindowHeight(const qint64 &value)
 QByteArray client::getReceivedFromServer()
 {
     return receivedFromSever;
+}
+
+int client::getInitialY() const
+{
+    return initialY;
+}
+
+void client::setInitialY(int value)
+{
+    initialY = value;
+}
+
+int client::getInitialX() const
+{
+    return initialX;
+}
+
+void client::setInitialX(int value)
+{
+    initialX = value;
 }
 
 

@@ -5,17 +5,12 @@ import QtQuick.Controls 2.5
 
 Window {
     id: root
-    x: mClient.windowX
-    y: mClient.windowY
-    width: mClient.windowWidth
-    height: mClient.windowHeight
+    x: mClient.initialX
+    y: mClient.initialY
+    width: mClient.initialWidth
+    height: mClient.initialHeight
     visible: mClient.windowVisibility
-    title: qsTr("Hello World")
-    //flags: Window.FramelessWindowHint
-//    Component.onCompleted: {
-//        setX(Screen.width / 2 - width / 2);
-//        setY(Screen.height / 2 - height / 2 +((mClient.wrapperWindowHeight - mClient.initialHeight)/2));
-//    }
+    title: qsTr("Hello World")    
     Rectangle
     {
         anchors.fill: parent
