@@ -1,7 +1,5 @@
 #include "client.h"
 
-client::client(QObject *parent) : QObject(parent){ }
-
 client::client(QString  initialHeight, QString  initialWidth, QString  wrapperWindowHeight, QString windowX, QString windowY, QObject *parent) : QObject(parent)
 {
     socket = new QLocalSocket(this);
@@ -21,45 +19,52 @@ client::client(QString  initialHeight, QString  initialWidth, QString  wrapperWi
 }
 
 //Server incoming contents handlers
-void client::readContentFromServer()
+inline void client::readContentFromServer()
 {
     setReceivedFromServer(socket->readAll());
-    qDebug() << receivedFromSever;
 }
 
-void client::setReceivedFromServer(QByteArray fromServer)
+inline void client::setReceivedFromServer(QByteArray fromServer)
 {
-    if(fromServer.at(0) == 'G')
-    {
-        QList<QByteArray> dims = fromServer.split('G');
-        setWindowX(dims.at(1).toInt());
-        setWindowY(dims.at(2).toInt());
-        setWindowWidth(dims.at(3).toInt());
-        setWindowHeight(dims.at(4).toInt());
-        return;
-    }
+    switch (fromServer.at(0)) {
+        case 'G': {
+            setDimensionsReceivedFromServer(fromServer.split('G'));
+            setWindowX(dimensionsReceivedFromServer.at(1).toInt());
+            setWindowY(dimensionsReceivedFromServer.at(2).toInt());
+            setWindowWidth(dimensionsReceivedFromServer.at(3).toInt());
+            setWindowHeight(dimensionsReceivedFromServer.at(4).toInt());
+            return;
+        }
+        case 'V': {
+            fromServer.remove(0,4);
+            if(fromServer == "true")
+                setWindowVisibility(true);
 
-    //Visibility handler
-    if(fromServer.mid(0,4) == "Vis-")
-    {
-        fromServer.remove(0,4);
-        if(fromServer == "true")
-            setWindowVisibility(true);
-
-        if(fromServer == "false")
-            setWindowVisibility(false);
-        return;
-    }
-
-    //Textual content handler (Patient...)
-    if (fromServer != receivedFromSever) {
-        receivedFromSever = fromServer;        
+            if(fromServer == "false")
+                setWindowVisibility(false);
+            return;
+        }
+        default: {
+            //Textual content handler (Patient...)
+            if (fromServer != receivedFromSever) {
+                receivedFromSever = fromServer;
+            }
+        }
     }
 
     emit receivedFromServerChanged();
 }
 
 //Getters and setters implementation
+QList<QByteArray> client::getDimensionsReceivedFromServer() const
+{
+    return dimensionsReceivedFromServer;
+}
+
+void client::setDimensionsReceivedFromServer(const QList<QByteArray> &value)
+{
+    dimensionsReceivedFromServer = value;
+}
 int client::getInitialWidth() const
 {
     return initialWidth;
@@ -101,45 +106,45 @@ void client::setWindowVisibility(bool value)
     emit windowVisibilityChanged();
 }
 
-qint64 client::getWindowX() const
+short client::getWindowX() const
 {
     return windowX;
 }
 
-void client::setWindowX(const qint64 &value)
+void client::setWindowX(const short &value)
 {
     windowX = value;
     emit windowXChanged();
 }
 
-qint64 client::getWindowY() const
+short client::getWindowY() const
 {
     return windowY;
 }
 
-void client::setWindowY(const qint64 &value)
+void client::setWindowY(const short &value)
 {
     windowY = value;
     emit windowYChanged();
 }
 
-qint64 client::getWindowWidth() const
+short client::getWindowWidth() const
 {
     return windowWidth;
 }
 
-void client::setWindowWidth(const qint64 &value)
+void client::setWindowWidth(const short &value)
 {
     windowWidth = value;
     emit windowWidthChanged();
 }
 
-qint64 client::getWindowHeight() const
+short client::getWindowHeight() const
 {
     return windowHeight;
 }
 
-void client::setWindowHeight(const qint64 &value)
+void client::setWindowHeight(const short &value)
 {
     windowHeight = value;
     emit windowHeightChanged();

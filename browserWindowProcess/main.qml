@@ -10,7 +10,7 @@ Window {
     width: mClient.initialWidth
     height: mClient.initialHeight
     visible: mClient.windowVisibility
-    title: qsTr("Hello World")    
+
     Rectangle
     {
         anchors.fill: parent
@@ -20,7 +20,6 @@ Window {
             TextArea {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                placeholderText: "Nothing received yet"
                 text: " height: " + root.height + " width: " + root.width + " x: " + root.x + " y:" + root.y
                 anchors.centerIn: parent
             }

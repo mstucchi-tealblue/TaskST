@@ -2,8 +2,6 @@
 #define PROCESS_H
 
 #include<QProcess>
-#include<QDebug>
-
 
 class Process : public QObject {
     Q_OBJECT

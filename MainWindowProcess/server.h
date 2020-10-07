@@ -4,8 +4,6 @@
 #include <QObject>
 #include <QLocalServer>
 #include <QLocalSocket>
-#include <QDataStream>
-#include <string>
 #include <QRect>
 
 class server : public QObject
@@ -16,25 +14,27 @@ public:
     explicit server(QObject *parent = nullptr);
     void geometryHandler(QRect windowRect);
 
-    QByteArray qByteX;
-    QByteArray qByteY;
-    QByteArray qByteWidth;
-    QByteArray qByteHeight;
-    QByteArray qByteGeoPrefix = "G";
-
-
-signals:
-
+    QByteArray getQByteX() const;
+    void setQByteX(const int value);
+    QByteArray getQByteY() const;
+    void setQByteY(const int value);
+    QByteArray getQByteWidth() const;
+    void setQByteWidth(const int value);
+    QByteArray getQByteHeight() const;
+    void setQByteHeight(const int value);
 
 public slots:
     void startCommunication();
     void processVisibilityHandler(bool visibility);
 
-
 private:
     QLocalServer *mServer;
-    QLocalSocket *clientConnection;
-
+    QLocalSocket *clientConnection;    
+    QByteArray qByteX;
+    QByteArray qByteY;
+    QByteArray qByteWidth;
+    QByteArray qByteHeight;
+    const QByteArray qByteGeoPrefix = "G";
 
 };
 

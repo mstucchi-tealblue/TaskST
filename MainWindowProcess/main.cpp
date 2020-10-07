@@ -43,6 +43,7 @@ int main(int argc, char *argv[])
     //Start the process invisible
     browserProcess.startProcess(window->height(),window->height()-50, window->width(), window->x(), window->y()+50);
 
+
     QObject::connect(window, &QQuickWindow::heightChanged, [&](){
     mServer->geometryHandler(window->geometry());
     });

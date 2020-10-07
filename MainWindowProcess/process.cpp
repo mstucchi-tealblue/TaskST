@@ -1,6 +1,5 @@
 
 #include "process.h"
-#include<QDebug>
 
 Process::Process(QString processName)
 {

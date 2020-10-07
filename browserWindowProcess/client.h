@@ -24,21 +24,22 @@ class client : public QObject
 
 public:
     explicit client(QString initialHeight, QString  initialWidth, QString  wrapperWindowHeight, QString windowX, QString windowY, QObject *parent = nullptr);
-    explicit client(QObject *parent = nullptr);
 
     // Getter and setter of the properties
-    QByteArray getReceivedFromServer() ;
-    void setReceivedFromServer(QByteArray fromServer) ;
-    qint64 getWindowHeight() const;
-    void setWindowHeight(const qint64 &value);
-    qint64 getWindowWidth() const;
-    void setWindowWidth(const qint64 &value);
+    QByteArray getReceivedFromServer();
+    inline void setReceivedFromServer(QByteArray fromServer) ;
+    QList<QByteArray> getDimensionsReceivedFromServer() const;
+    void setDimensionsReceivedFromServer(const QList<QByteArray> &value);
+    short getWindowHeight() const;
+    void setWindowHeight(const short &value);
+    short getWindowWidth() const;
+    void setWindowWidth(const short &value);
     bool getWindowVisibility() const;
     void setWindowVisibility(bool value);
-    qint64 getWindowX() const;
-    void setWindowX(const qint64 &value);
-    qint64 getWindowY() const;
-    void setWindowY(const qint64 &value);
+    short getWindowX() const;
+    void setWindowX(const short &value);
+    short getWindowY() const;
+    void setWindowY(const short &value);
     int getInitialHeight() const;
     void setInitialHeight(int value);
     int getInitialWidth() const;
@@ -53,23 +54,24 @@ public:
 signals:
     void receivedFromServerChanged();
     void windowHeightChanged();
-    void windowWidthChanged();    
+    void windowWidthChanged();
     void windowXChanged();
     void windowYChanged();
     void windowVisibilityChanged();
 
 public slots:
-    void readContentFromServer();
+    inline void readContentFromServer();
 
 private:
     QLocalSocket *socket;
     QByteArray receivedFromSever;
+    QList<QByteArray> dimensionsReceivedFromServer;
 
     //Real-time dimension parameters
-    qint64 windowHeight;
-    qint64 windowWidth;
-    qint64 windowX;
-    qint64 windowY;
+    short windowHeight;
+    short windowWidth;
+    short windowX;
+    short windowY;
     bool windowVisibility = false;
 
 
