@@ -8,23 +8,17 @@ server::server(QObject *parent) : QObject(parent)
         qDebug() << "Server could not start!";
         qDebug() << mServer->errorString();
         return;
-
-    } else {
+    }
+    else {
         qDebug() << "Server started";
     }
 
     connect(mServer, &QLocalServer::newConnection, this, &server::startCommunication);
 }
 
+
 void server::geometryHandler(QRect windowRect)
 {
-    QByteArray qByteX;
-    QByteArray qByteY;
-    QByteArray qByteWidth;
-    QByteArray qByteHeight;
-
-    QByteArray qByteGeoPrefix = "G";
-
     qByteX.setNum(windowRect.x());
     qByteY.setNum(windowRect.y()+50);
     qByteWidth.setNum(windowRect.width());
@@ -32,6 +26,7 @@ void server::geometryHandler(QRect windowRect)
 
     clientConnection->write(qByteGeoPrefix + qByteX + qByteGeoPrefix + qByteY + qByteGeoPrefix + qByteWidth + qByteGeoPrefix  + qByteHeight );
     clientConnection->flush();
+    return;
 }
 
 void server::processVisibilityHandler(bool visibility)
@@ -40,7 +35,6 @@ void server::processVisibilityHandler(bool visibility)
         clientConnection->write("Vis-true");
     else
         clientConnection->write("Vis-false");
-
     clientConnection->flush();
 }
 

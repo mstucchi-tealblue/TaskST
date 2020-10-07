@@ -16,6 +16,13 @@ public:
     explicit server(QObject *parent = nullptr);
     void geometryHandler(QRect windowRect);
 
+    QByteArray qByteX;
+    QByteArray qByteY;
+    QByteArray qByteWidth;
+    QByteArray qByteHeight;
+    QByteArray qByteGeoPrefix = "G";
+
+
 signals:
 
 
@@ -23,9 +30,11 @@ public slots:
     void startCommunication();
     void processVisibilityHandler(bool visibility);
 
+
 private:
     QLocalServer *mServer;
     QLocalSocket *clientConnection;
+
 
 };
 

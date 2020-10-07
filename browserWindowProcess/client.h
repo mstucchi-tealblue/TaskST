@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QLocalSocket>
 #include <QDataStream>
-#include <QTimer>
 #include <typeinfo>
 
 
@@ -74,7 +73,7 @@ private:
     bool windowVisibility = false;
 
 
-    //Positioning parameters
+    //Initial positioning parameters
     int initialHeight;
     int initialWidth;
     int initialX;

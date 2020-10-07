@@ -38,7 +38,9 @@ else()
       main.cpp
       qml.qrc
       process.cpp
+      process.h
       server.cpp
+      server.h
     )
 endif()
 

@@ -17,7 +17,7 @@ Window {
     ColumnLayout{
         id: mainWindowColumn
         anchors.fill: parent
-        anchors.margins: 5
+        anchors.topMargin: 5
 
         RowLayout {
             id: firstRow
@@ -76,7 +76,7 @@ Window {
             id: frame
             Layout.fillHeight: true
             Layout.fillWidth: true
-            visible: !loginProcess.visible && !homeProcess.visible
+            visible: !loginButton.highlighted && !homeButton.highlighted && !browserButton.highlighted && !analysisButton.highlighted
         }
 
         Rectangle {
@@ -101,6 +101,14 @@ Window {
                 text: "This is home, pid:"+pid
                 anchors.centerIn: parent
             }
+        }
+
+        Rectangle {
+            id: backgroundBrowserProcess
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            color: "gray"
+            visible: browserButton.highlighted || analysisButton.highlighted
         }
     }
 
