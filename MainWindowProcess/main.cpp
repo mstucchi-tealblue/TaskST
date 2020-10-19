@@ -5,8 +5,10 @@
 #include <QQmlComponent>
 #include <QQuickWindow>
 #include <QObject>
+#include <QCoreApplication>
 #include "process.h"
 #include "server.h"
+#include "simpleswitch.h"
 
 
 int main(int argc, char *argv[])
@@ -16,6 +18,11 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     server *mServer = new server(&app);
+
+    SimpleSwitch srcSwitch; // create simple switch
+    QRemoteObjectHost srcNode(QUrl(QStringLiteral("local:switch"))); // create host node without Registry
+    srcNode.enableRemoting(&srcSwitch); // enable remoting/sharing
+
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
@@ -44,21 +51,39 @@ int main(int argc, char *argv[])
     browserProcess.startProcess(window->height(),window->height()-50, window->width(), window->x(), window->y()+50);
 
 
+
     QObject::connect(window, &QQuickWindow::heightChanged, [&](){
-    mServer->geometryHandler(window->geometry());
+    srcSwitch.setGeometry(window->geometry());
     });
 
     QObject::connect(window, &QQuickWindow::widthChanged, [&](){
-    mServer->geometryHandler(window->geometry());
+    srcSwitch.setGeometry(window->geometry());
     });
 
     QObject::connect(window, &QQuickWindow::xChanged, [&](){
-    mServer->geometryHandler(window->geometry());
+    srcSwitch.setGeometry(window->geometry());
     });
 
     QObject::connect(window, &QQuickWindow::yChanged, [&](){
-    mServer->geometryHandler(window->geometry());
+    srcSwitch.setGeometry(window->geometry());
     });
+
+
+//    QObject::connect(window, &QQuickWindow::heightChanged, [&](){
+//    mServer->geometryHandler(window->geometry());
+//    });
+
+//    QObject::connect(window, &QQuickWindow::widthChanged, [&](){
+//    mServer->geometryHandler(window->geometry());
+//    });
+
+//    QObject::connect(window, &QQuickWindow::xChanged, [&](){
+//    mServer->geometryHandler(window->geometry());
+//    });
+
+//    QObject::connect(window, &QQuickWindow::yChanged, [&](){
+//    mServer->geometryHandler(window->geometry());
+//    });
 
     QObject::connect(context, &QQmlContext::destroyed, [&](){
     browserProcess.closeProcessHandler();

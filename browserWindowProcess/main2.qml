@@ -1,4 +1,4 @@
-//GUI for QtRO implementation
+//GUI for socket implementation
 
 import QtQuick 2.15
 import QtQuick.Window 2.15
@@ -7,10 +7,10 @@ import QtQuick.Controls 2.5
 
 Window {
     id: root
-    width: client.internalProcessWindowWidth
-    height: client.internalProcessWindowHeight
-    x: client.internalProcessWindowX
-    y: client.internalProcessWindowY
+    x: mClient.initialX
+    y: mClient.initialY
+    width: mClient.initialWidth
+    height: mClient.initialHeight
     visible: mClient.windowVisibility
 
     Rectangle

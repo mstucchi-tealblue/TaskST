@@ -26,24 +26,21 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick Network REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Network REQUIRED)
+find_package(Qt5 COMPONENTS RemoteObjects REQUIRED)
 
-if(ANDROID)
-    add_library(browserWindowProcess SHARED
-      main.cpp
-      qml.qrc
-      client.h
-      client.cpp
+set(SOURCES
+    main.cpp
+    qml.qrc
+    client.h
+    client.cpp
+    main2.cpp
     )
-else()
-    add_executable(browserWindowProcess
-      main.cpp
-      qml.qrc
-      client.h
-      client.cpp
-    )
-endif()
+
+qt5_generate_repc(SOURCES simpleswitch.rep REPLICA)
+
+add_executable(browserWindowProcess ${SOURCES})
 
 target_compile_definitions(browserWindowProcess
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(browserWindowProcess
-    PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt${QT_VERSION_MAJOR}::Network )
+    PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::RemoteObjects )

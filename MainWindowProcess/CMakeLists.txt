@@ -24,28 +24,28 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Core Quick Network Widgets Gui REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick Network Widgets Gui RemoteObjects REQUIRED)
 
-if(ANDROID)
-    add_library(MainWindowProcess SHARED
-      main.cpp
-      qml.qrc
-      process.cpp      
-      server.cpp
-    )
-else()
-    add_executable(MainWindowProcess
-      main.cpp
-      qml.qrc
-      process.cpp
-      process.h
-      server.cpp
-      server.h
-    )
-endif()
+set(SOURCES
+    main.cpp
+    simpleswitch.cpp
+    simpleswitch.h
+    simpleswitch.rep
+    main.cpp
+    qml.qrc
+    process.cpp
+    process.h
+    server.cpp
+    server.h
+)
+
+qt5_generate_repc(SOURCES simpleswitch.rep SOURCE)
+
+add_executable(MainWindowProcess ${SOURCES})
+
 
 target_compile_definitions(MainWindowProcess
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 
 target_link_libraries(MainWindowProcess
-  PRIVATE Qt5::Core Qt5::Quick Qt5::Network Qt5::Widgets Qt5::Gui)
+  PRIVATE Qt5::Core Qt5::Quick Qt5::Network Qt5::Widgets Qt5::Gui Qt5::RemoteObjects)

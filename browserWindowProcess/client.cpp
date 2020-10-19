@@ -1,5 +1,90 @@
 #include "client.h"
 
+client::client(QSharedPointer<SimpleSwitchReplica> ptr) :
+    QObject(nullptr),reptr(ptr)
+{
+    initConnections();
+}
+
+//destructor
+client::~client()
+{
+}
+
+void client::initConnections()
+{
+        // initialize connections between signals and slots
+       // connect source replica signal currStateChanged() with client's recSwitchState() slot to receive source's current state
+        QObject::connect(reptr.data(), &SimpleSwitchReplica::geometryChanged, [&](){
+            setLocalGeometry_slot(reptr.data()->geometry());
+            });
+}
+
+void client::setLocalGeometry_slot(QRect windowGeometry)
+{
+    qDebug() << "Geometria arrivata";
+    setInternalProcessWindow(windowGeometry);
+    setInternalProcessWindowHeight(getInternalProcessWindow().height()-50);
+    setInternalProcessWindowWidth(getInternalProcessWindow().width());
+    setInternalProcessWindowX(getInternalProcessWindow().x());
+    setInternalProcessWindowY(getInternalProcessWindow().y()+50);
+}
+
+int client::getInternalProcessWindowY() const
+{
+    return internalProcessWindowY;
+}
+
+void client::setInternalProcessWindowY(int value)
+{
+    internalProcessWindowY = value;
+     Q_EMIT internalProcessWindowYChanged();
+}
+
+int client::getInternalProcessWindowX() const
+{
+    return internalProcessWindowX;
+}
+
+void client::setInternalProcessWindowX(int value)
+{
+    internalProcessWindowX = value;
+     Q_EMIT internalProcessWindowXChanged();
+}
+
+int client::getInternalProcessWindowWidth() const
+{
+    return internalProcessWindowWidth;
+}
+
+void client::setInternalProcessWindowWidth(int value)
+{
+    internalProcessWindowWidth = value;
+     Q_EMIT internalProcessWindowWidthChanged();
+}
+
+int client::getInternalProcessWindowHeight() const
+{
+    return internalProcessWindowHeight;
+}
+
+void client::setInternalProcessWindowHeight(int value)
+{
+    internalProcessWindowHeight = value;
+    Q_EMIT internalProcessWindowHeightChanged();
+}
+
+QRect client::getInternalProcessWindow() const
+{
+    return internalProcessWindow;
+}
+
+void client::setInternalProcessWindow(const QRect &value)
+{
+    internalProcessWindow = value;
+}
+
+
 client::client(QString  initialHeight, QString  initialWidth, QString  wrapperWindowHeight, QString windowX, QString windowY, QObject *parent) : QObject(parent)
 {
     socket = new QLocalSocket(this);
