@@ -13,21 +13,7 @@ server::server(QObject *parent) : QObject(parent)
         qDebug() << "Server started";
     }
 
-    connect(mServer, &QLocalServer::newConnection, this, &server::startCommunication);
-}
-
-
-void server::geometryHandler(QRect windowRect)
-{
-    setQByteX(windowRect.x());
-    qByteY.setNum(windowRect.y()+50);
-    qByteWidth.setNum(windowRect.width());
-    qByteHeight.setNum(windowRect.height()-50);
-
-    clientConnection->write(qByteGeoPrefix + qByteX + qByteGeoPrefix + qByteY + qByteGeoPrefix + qByteWidth + qByteGeoPrefix  + qByteHeight );
-    clientConnection->flush();
-
-    return;
+    connect(mServer, &QLocalServer::newConnection, this, &server::startSocketCommunication);
 }
 
 void server::processVisibilityHandler(bool visibility)
@@ -40,48 +26,9 @@ void server::processVisibilityHandler(bool visibility)
     clientConnection->flush();
 }
 
-QByteArray server::getQByteHeight() const
-{
-    return qByteHeight;
-}
-
-void server::setQByteHeight(const int value)
-{
-    qByteHeight.setNum(value);
-}
-
-QByteArray server::getQByteWidth() const
-{
-    return qByteWidth;
-}
-
-void server::setQByteWidth(const int value)
-{
-    qByteWidth.setNum(value);
-}
-
-QByteArray server::getQByteY() const
-{
-    return qByteY;
-}
-
-void server::setQByteY(const int value)
-{
-    qByteY.setNum(value);
-}
-
-QByteArray server::getQByteX() const
-{
-    return qByteX;
-}
-
-void server::setQByteX(const int value)
-{
-    qByteX.setNum(value);
-}
 
 //Slots:
-void server::startCommunication()
+void server::startSocketCommunication()
 {
     clientConnection = mServer->nextPendingConnection();
 }

@@ -1,12 +1,11 @@
 #include "simpleswitch.h"
 
-// constructor
+//This is the implementation of the object to share
 SimpleSwitch::SimpleSwitch(QObject *parent) : SimpleSwitchSimpleSource(parent)
 {
     qDebug() << "Source Node Started";
 }
 
-//destructor
 SimpleSwitch::~SimpleSwitch()
 {
 }
