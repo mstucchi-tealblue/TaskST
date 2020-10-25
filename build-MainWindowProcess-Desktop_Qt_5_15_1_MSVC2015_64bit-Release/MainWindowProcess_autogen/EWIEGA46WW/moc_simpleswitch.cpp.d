@@ -1,0 +1,1 @@
+C:/Users/Matteo/Documents/QtProjects/TaskST/build-MainWindowProcess-Desktop_Qt_5_15_1_MSVC2015_64bit-Release/MainWindowProcess_autogen/EWIEGA46WW/moc_simpleswitch.cpp: C:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess/simpleswitch.h

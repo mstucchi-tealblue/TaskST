@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.5
 
 Window {
+    property bool visibProperty: true
     id: mainWindow
     width: 640
     height: 480

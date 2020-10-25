@@ -18,14 +18,13 @@ server::server(QObject *parent) : QObject(parent)
 
 void server::processVisibilityHandler(bool visibility)
 {
-//    if(visibility)
-//        clientConnection->write("Vis-true");
-//    else
-//        clientConnection->write("Vis-false");
+    if(visibility)
+        clientConnection->write("Vis-true");
+    else
+        clientConnection->write("Vis-false");
 
-//    clientConnection->flush();
+    clientConnection->flush();
 }
-
 
 //Slots:
 void server::startSocketCommunication()

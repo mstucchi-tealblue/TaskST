@@ -1,0 +1,77 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "MainWindowProcess",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "MainWindowProcess::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MainWindowProcess-Release-8aa3c72c4b91d872cbce.json",
+					"name" : "MainWindowProcess",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "MainWindowProcess_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MainWindowProcess_autogen-Release-1814d8ec48ee6603cdf5.json",
+					"name" : "MainWindowProcess_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "MainWindowProcess_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MainWindowProcess_autogen_timestamp_deps-Release-f3ddecc0cd4800e17e2d.json",
+					"name" : "MainWindowProcess_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Matteo/Documents/QtProjects/TaskST/build-MainWindowProcess-Desktop_Qt_5_15_1_MSVC2015_64bit-Release",
+		"source" : "C:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 1
+	}
+}

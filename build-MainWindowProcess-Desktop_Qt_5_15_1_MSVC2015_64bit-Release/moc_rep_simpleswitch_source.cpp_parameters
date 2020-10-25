@@ -1,0 +1,12 @@
+-IC:/Users/Matteo/Documents/QtProjects/TaskST/MainWindowProcess
+-IC:/Users/Matteo/Documents/QtProjects/TaskST/build-MainWindowProcess-Desktop_Qt_5_15_1_MSVC2015_64bit-Release
+-DWIN32
+--compiler-flavor=msvc
+-IC:/Qt/5.15.1/msvc2015_64/include/
+-IC:/Qt/5.15.1/msvc2015_64/include/QtRemoteObjects
+-IC:/Qt/5.15.1/msvc2015_64/include/QtNetwork
+-IC:/Qt/5.15.1/msvc2015_64/include/QtCore
+-IC:/Qt/5.15.1/msvc2015_64/.//mkspecs/win32-msvc
+-o
+C:/Users/Matteo/Documents/QtProjects/TaskST/build-MainWindowProcess-Desktop_Qt_5_15_1_MSVC2015_64bit-Release/moc_rep_simpleswitch_source.cpp
+C:/Users/Matteo/Documents/QtProjects/TaskST/build-MainWindowProcess-Desktop_Qt_5_15_1_MSVC2015_64bit-Release/rep_simpleswitch_source.h

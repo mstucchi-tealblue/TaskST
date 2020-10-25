@@ -8,16 +8,31 @@ client::client(QSharedPointer<SimpleSwitchReplica> ptr) :
 
 client::client(QString  initialHeight, QString  initialWidth, QString  wrapperWindowHeight, QString windowX, QString windowY, QObject *parent) : QObject(parent)
 {
+    QRect* initialWindow = new QRect(windowX.toInt(),windowY.toInt(),initialWidth.toInt(),initialHeight.toInt());
+    setInternalProcessWindow(*initialWindow);
+
     socket = new QLocalSocket(this);
     connect(socket, &QLocalSocket::readyRead, this, &client::readContentFromServer);
     socket->connectToServer("ServerName");
+}
 
-    setInternalProcessWindow(QRect(windowX.toInt(),windowY.toInt(),initialWidth.toInt(),initialHeight.toInt()));
-    setInternalProcessWindowHeight(initialHeight.toInt()-50);
-    setInternalProcessWindowWidth(initialWidth.toInt());
-    setInternalProcessWindowX(windowX.toInt());
-    setInternalProcessWindowY(windowY.toInt()+50);
+inline void client::readContentFromServer()
+{
+    setReceivedFromServer(socket->readAll());
+}
 
+inline void client::setReceivedFromServer(QByteArray fromServer)
+{
+    if(fromServer.at(0) == 'V') {
+        fromServer.remove(0,4);
+
+        if(fromServer == "true")
+            setWindowVisibility(true);
+        if(fromServer == "false")
+            setWindowVisibility(false);
+        return;
+    }
+    emit receivedFromServerChanged();
 }
 
 //destructor
@@ -45,6 +60,34 @@ void client::setLocalGeometry_slot(QRect windowGeometry)
 
 }
 
+QByteArray client::getReceivedFromServer()
+{
+    return receivedFromSever;
+}
+
+
+bool client::getWindowVisibility() const
+{
+    return windowVisibility;
+}
+
+void client::setWindowVisibility(bool value)
+{
+    windowVisibility = value;
+    emit windowVisibilityChanged();
+}
+
+QRect client::getInternalProcessWindow()
+{
+    return internalProcessWindow;
+}
+
+void client::setInternalProcessWindow(QRect &value)
+{
+    internalProcessWindow = value;
+    Q_EMIT internalProcessWindowChanged();
+}
+
 int client::getInternalProcessWindowX() const
 {
     return internalProcessWindowX;
@@ -67,17 +110,6 @@ void client::setInternalProcessWindowY(int value)
     Q_EMIT internalProcessWindowYChanged();
 }
 
-int client::getInternalProcessWindowWidth() const
-{
-    return internalProcessWindowWidth;
-}
-
-void client::setInternalProcessWindowWidth(int value)
-{
-    internalProcessWindowWidth = value;
-    Q_EMIT internalProcessWindowWidthChanged();
-}
-
 int client::getInternalProcessWindowHeight() const
 {
     return internalProcessWindowHeight;
@@ -89,58 +121,25 @@ void client::setInternalProcessWindowHeight(int value)
     Q_EMIT internalProcessWindowHeightChanged();
 }
 
-QRect client::getInternalProcessWindow() const
+int client::getInternalProcessWindowWidth() const
 {
-    return internalProcessWindow;
+    return internalProcessWindowWidth;
 }
 
-void client::setInternalProcessWindow(const QRect &value)
+void client::setInternalProcessWindowWidth(int value)
 {
-    internalProcessWindow = value;
-}
-
-
-
-//Server incoming contents handlers
-inline void client::readContentFromServer()
-{
-    setReceivedFromServer(socket->readAll());
-}
-
-inline void client::setReceivedFromServer(QByteArray fromServer)
-{
-    if(fromServer.at(0) == 'V') {
-        fromServer.remove(0,4);
-
-        if(fromServer == "true")
-            setWindowVisibility(true);
-        if(fromServer == "false")
-            setWindowVisibility(false);
-        return;
-    }
-
-    emit receivedFromServerChanged();
-}
-
-//Getters and setters implementation
-
-
-bool client::getWindowVisibility() const
-{
-    return windowVisibility;
-}
-
-void client::setWindowVisibility(bool value)
-{
-    windowVisibility = value;
-    emit windowVisibilityChanged();
+    internalProcessWindowWidth = value;
+    Q_EMIT internalProcessWindowWidthChanged();
 }
 
 
-QByteArray client::getReceivedFromServer()
-{
-    return receivedFromSever;
-}
+
+
+
+
+
+
+
 
 
 

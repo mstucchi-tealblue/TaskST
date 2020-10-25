@@ -18,7 +18,6 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     server *mServer = new server(&app);
-
     Process browserProcess(QString("browserProcess"));
 
     SimpleSwitch srcSwitch; // create the object to share
