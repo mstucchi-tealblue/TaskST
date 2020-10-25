@@ -22,7 +22,7 @@ Window {
             TextArea {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                text: " height: " + root.height + " width: " + root.width + " x: " + root.x + " y:" + root.y
+                text: " OSSSSSSSS height: " + root.height + " width: " + root.width + " x: " + root.x + " y:" + root.y
                 anchors.centerIn: parent
             }
         }

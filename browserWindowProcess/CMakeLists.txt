@@ -33,7 +33,6 @@ set(SOURCES
     qml.qrc
     client.h
     client.cpp
-    main2.cpp
     )
 
 qt5_generate_repc(SOURCES simpleswitch.rep REPLICA)
